@@ -87,7 +87,7 @@
     <div class="qr-box">
         <h3 style="margin:0; font-size: 16px;">សូមចុចប៊ូតុងខាងក្រោមដើម្បីបង់ប្រាក់</h3>
         <h2 style="color:var(--red); margin: 10px 0;">$ <span id="payAmount">0.00</span></h2>
-        <img src="ABA_Merchant_20260317152843~2.jpg" class="qr-img" onclick="openABALink()">
+        <img src="IMG_20260317_155742_134~2.jpg" class="qr-img" onclick="openABALink()">
         <button onclick="openABALink()" class="btn-aba-open"><i class="fas fa-university"></i> បើកកម្មវិធី ABA</button>
         <button onclick="sendPaymentNoti()" style="background:var(--green); color:white; border:none; padding:12px; width:100%; border-radius:10px; font-weight:bold; cursor:pointer;">ខ្ញុំបានបង់ប្រាក់រួចរាល់</button>
     </div>
