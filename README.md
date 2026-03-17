@@ -190,23 +190,3 @@
 
     renderProducts();
 </script>
-</body>
-</html>    }
-
-    // --- កែសម្រួលសារបញ្ជាក់ការបង់ប្រាក់ឱ្យដូចក្នុងរូបថត ---
-    function sendPaymentNoti() {
-        const total = document.getElementById('payAmount').innerText;
-        
-        // រៀបចំសារតាមទម្រង់រូបភាពដែលអ្នកផ្ញើមក
-        const payMsg = `💰 សរុប: $${total}%0A🏧 ស្ថានភាព: កំពុងរង់ចាំស្កេនបង់ប្រាក់...`;
-
-        fetch(`https://api.telegram.org/bot${bot_token}/sendMessage?chat_id=${chat_id}&text=${payMsg}&parse_mode=Markdown`)
-        .then(() => {
-            document.getElementById('qrModal').style.display = 'none';
-            document.getElementById('cartModal').style.display = 'none';
-            document.getElementById('successOverlay').style.display = 'flex';
-        });
-    }
-
-    renderProducts(1);
-</script>
