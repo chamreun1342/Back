@@ -1,17 +1,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Smart Store - Easy Update</title>
+    <title>Smart Store - Unlimited Products</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --main: #0088cc; --orange: #ff9900; --red: #d9534f; --telegram: #24A1DE; --green: #28a745; }
         * { box-sizing: border-box; }
-        body { font-family: 'Khmer OS Battambang', sans-serif; background: #f4f7f6; margin: 0; padding-bottom: 90px; overflow-x: hidden; }
+        body { font-family: 'Khmer OS Battambang', sans-serif; background: #f4f7f6; margin: 0; padding-bottom: 90px; }
         
         .header { background: linear-gradient(135deg, var(--main), #005f91); color: white; text-align: center; padding: 12px; position: sticky; top: 0; z-index: 1000; }
         .container { padding: 10px; max-width: 100%; margin: auto; }
         
-        /* Product Grid 2 Columns */
+        /* Product Grid */
         .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
         .product-card { background: white; border-radius: 12px; padding: 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #eee; display: flex; flex-direction: column; justify-content: space-between; }
         .product-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; margin-bottom: 8px; background: #f9f9f9; }
@@ -19,10 +19,11 @@
         .product-card .price { color: var(--red); font-weight: bold; font-size: 15px; margin-bottom: 8px; display: block; }
         .btn-add { background: var(--orange); color: white; border: none; padding: 8px; border-radius: 20px; width: 100%; font-weight: bold; font-size: 11px; cursor: pointer; }
 
-        /* Pagination */
-        .pagination { display: flex; justify-content: center; align-items: center; gap: 8px; margin: 25px 0; flex-wrap: wrap; }
-        .page-btn { padding: 8px 15px; border: 1px solid var(--main); background: white; color: var(--main); border-radius: 8px; cursor: pointer; font-weight: bold; }
-        .page-btn.active { background: var(--main); color: white; }
+        /* Pagination Style */
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 5px; margin: 25px 0; flex-wrap: wrap; padding: 0 10px; }
+        .page-btn { padding: 6px 12px; border: 1px solid var(--main); background: white; color: var(--main); border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 13px; transition: 0.3s; }
+        .page-btn.active { background: var(--main); color: white; border-color: var(--main); }
+        .page-btn:hover { background: #eef9ff; }
 
         /* Floating Controls */
         .floating-controls { position: fixed; bottom: 20px; right: 15px; display: flex; flex-direction: column; gap: 10px; z-index: 2000; }
@@ -37,10 +38,10 @@
         .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; }
         .order-form input, .order-form textarea { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #ddd; outline: none; font-family: inherit; }
 
-        /* QR Modal */
         #qrModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 4000; align-items: center; justify-content: center; padding: 15px; }
         .qr-box { background: white; padding: 20px; border-radius: 20px; width: 100%; max-width: 320px; text-align: center; }
-        .qr-img { width: 100%; max-width: 250px; border-radius: 10px; border: 2px solid var(--main); margin: 15px 0; }
+        .qr-img { width: 100%; max-width: 230px; border-radius: 10px; border: 2px solid var(--main); margin: 10px 0; cursor: pointer; }
+        .btn-aba-open { display: block; background: #005f91; color: white; text-decoration: none; padding: 15px; border-radius: 10px; font-weight: bold; margin-bottom: 15px; font-size: 15px; }
     </style>
 </head>
 <body>
@@ -53,7 +54,7 @@
 </div>
 
 <div class="floating-controls">
-    <a href="https://t.me/Luck_17" target="_blank" class="float-btn bg-telegram"><i class="fab fa-telegram-plane" style="font-size: 25px;"></i></a>
+    <a href="https://t.me/CHEASOKCHAMREUN1111" target="_blank" class="float-btn bg-telegram"><i class="fab fa-telegram-plane" style="font-size: 25px;"></i></a>
     <div class="float-btn bg-cart" onclick="openCart()">
         <i class="fas fa-shopping-cart" style="font-size: 20px;"></i>
         <div class="badge" id="cartBadge">0</div>
@@ -81,45 +82,50 @@
 
 <div id="qrModal">
     <div class="qr-box">
-        <h3 style="margin:0;">ស្កេនដើម្បីបង់ប្រាក់</h3>
-        <h2 style="color:var(--red);">$ <span id="payAmount">0.00</span></h2>
-        <a id="bankLink" href="#" target="_blank"><img src="aba_mobile.jpg" class="qr-img"></a>
+        <h3 style="margin:0; font-size: 16px;">សូមចុចប៊ូតុងខាងក្រោមដើម្បីបង់ប្រាក់</h3>
+        <h2 style="color:var(--red); margin: 10px 0;">$ <span id="payAmount">0.00</span></h2>
+        <img src="aba_mobile.jpg" class="qr-img" onclick="openABALink()">
+        <a id="abaLinkBtn" href="https://pay.ababank.com/oRF8/du83nu9t" class="btn-aba-open"><i class="fas fa-university"></i> បើកកម្មវិធី ABA</a>
         <button onclick="sendPaymentNoti()" style="background:var(--green); color:white; border:none; padding:12px; width:100%; border-radius:10px; font-weight:bold;">ខ្ញុំបានបង់ប្រាក់រួចរាល់</button>
     </div>
 </div>
 
 <script>
-    // --- កន្លែងសម្រាប់ Copy ដាក់ផលិតផលបន្តគ្នា ---
-    // អ្នកអាចថែមរូបបានច្រើនតាមចិត្ត ឱ្យតែគ្រប់ ១០ វានឹងកាត់ទៅទំព័រថ្មី
+    // --- របៀបបន្ថែមផលិតផល៖ Copy ពី { រហូតដល់ } រួច Paste បន្តបន្ទាប់ចុះក្រោម ---
     const allProducts = [
-        { id: 1, name: "អាវយឺតបុរស ម៉ូតថ្មី", price: "12.00", img: "https://via.placeholder.com/150?text=Product1" },
-        { id: 2, name: "ខោខូវប៊យ គុណភាពខ្ពស់", price: "18.50", img: "https://via.placeholder.com/150?text=Product2" },
-        { id: 3, name: "ស្បែកជើងប៉ាតា", price: "25.00", img: "https://via.placeholder.com/150?text=Product3" },
-        { id: 4, name: "កាបូបស្ពាយក្រោយ", price: "15.00", img: "https://via.placeholder.com/150?text=Product4" },
-        { id: 5, name: "វ៉ែនតាការពារថ្ងៃ", price: "8.00", img: "https://via.placeholder.com/150?text=Product5" },
-        { id: 6, name: "នាឡិកាដៃទំនើប", price: "45.00", img: "https://via.placeholder.com/150?text=Product6" },
-        { id: 7, name: "មួកប៉ារ៉េ", price: "5.50", img: "https://via.placeholder.com/150?text=Product7" },
-        { id: 8, name: "ខ្សែក្រវាត់ស្បែក", price: "10.00", img: "https://via.placeholder.com/150?text=Product8" },
-        { id: 9, name: "អាវធំសម្រាប់បុរស", price: "35.00", img: "https://via.placeholder.com/150?text=Product9" },
-        { id: 10, name: "កាបូបលុយ", price: "7.00", img: "https://via.placeholder.com/150?text=Product10" },
+        { id: 1, name: "អាវយឺតបុរស ម៉ូតថ្មី ០១", price: "10.00", img: "IMG_20260317_032745_060.jpg" },
+        { id: 2, name: "ខោខូវប៊យ គុណភាពខ្ពស់ ០២", price: "18.50", img: "https://via.placeholder.com/150" },
+        { id: 3, name: "ស្បែកជើងប៉ាតា ០៣", price: "25.00", img: "https://via.placeholder.com/150" },
+        { id: 4, name: "កាបូបស្ពាយក្រោយ ០៤", price: "15.00", img: "https://via.placeholder.com/150" },
+        { id: 5, name: "វ៉ែនតាការពារថ្ងៃ ០៥", price: "8.00", img: "https://via.placeholder.com/150" },
+        { id: 6, name: "នាឡិកាដៃទំនើប ០៦", price: "45.00", img: "https://via.placeholder.com/150" },
+        { id: 7, name: "មួកប៉ារ៉េ ០៧", price: "5.50", img: "https://via.placeholder.com/150" },
+        { id: 8, name: "ខ្សែក្រវាត់ស្បែក ០៨", price: "10.00", img: "https://via.placeholder.com/150" },
+        { id: 9, name: "អាវធំសម្រាប់បុរស ០៩", price: "35.00", img: "https://via.placeholder.com/150" },
+        { id: 10, name: "កាបូបលុយ ស្បែកសុទ្ធ ១០", price: "7.00", img: "https://via.placeholder.com/150" },
         
-        // --- ចាប់ពីលេខ ១១ វានឹងទៅទំព័រទី ២ ---
-        { id: 11, name: "ផលិតផលថ្មី ទំព័រ២", price: "20.00", img: "https://via.placeholder.com/150?text=Product11" },
-        { id: 12, name: "ផលិតផលថ្មី ទំព័រ២", price: "22.00", img: "https://via.placeholder.com/150?text=Product12" },
+        // --- ចាប់ពីលេខ ១១ ទៅ វានឹងលោតចូលទំព័រទី ២ ដោយស្វ័យប្រវត្តិ ---
+        { id: 11, name: "ផលិតផលលេខ ១១", price: "10.00", img: "https://via.placeholder.com/150" },
+        { id: 12, name: "ផលិតផលលេខ ១២", price: "10.00", img: "https://via.placeholder.com/150" },
+        { id: 13, name: "ផលិតផលលេខ ១៣", price: "10.00", img: "https://via.placeholder.com/150" },
+        // អ្នកអាច Paste បន្តរហូតដល់ id: 1000 ក៏បាន...
     ];
 
     let cart = [];
     let curPage = 1;
-    const limit = 10;
+    const limit = 10; // ១ ទំព័រ បង្ហាញ ១០ មុខ
     const bot_token = "8502623825:AAE9MFP9sQXkqEBdHeQ9oZnp9TxU6g5mL3Y";
     const chat_id = "1643504321";
+    let currentTotal = 0;
 
     function renderProducts(page) {
         curPage = page;
         const grid = document.getElementById('productGrid');
         const start = (page - 1) * limit;
-        const items = allProducts.slice(start, start + limit);
-        grid.innerHTML = items.map(p => `
+        const end = start + limit;
+        const itemsToDisplay = allProducts.slice(start, end);
+
+        grid.innerHTML = itemsToDisplay.map(p => `
             <div class="product-card">
                 <img src="${p.img}" class="product-img">
                 <h4>${p.name}</h4>
@@ -127,6 +133,7 @@
                 <button class="btn-add" onclick="addToCart(${p.id})">+ ដាក់កន្ត្រក</button>
             </div>
         `).join('');
+        
         renderPager();
         window.scrollTo({top: 0, behavior: 'smooth'});
     }
@@ -135,7 +142,10 @@
         const pager = document.getElementById('pagination');
         const totalPages = Math.ceil(allProducts.length / limit);
         pager.innerHTML = "";
+        
         if (totalPages <= 1) return;
+
+        // បង្ហាញប៊ូតុងលេខទំព័រ
         for (let i = 1; i <= totalPages; i++) {
             pager.innerHTML += `<button class="page-btn ${i === curPage ? 'active' : ''}" onclick="renderProducts(${i})">${i}</button>`;
         }
@@ -169,6 +179,7 @@
             </div>`;
         }).join('');
         document.getElementById('totalTxt').innerText = `$${total.toFixed(2)}`;
+        currentTotal = total.toFixed(2);
     }
 
     function removeItem(uid) {
@@ -182,20 +193,28 @@
         const phone = document.getElementById('custPhone').value;
         const addr = document.getElementById('custAddress').value;
         if (!name || !phone || !addr) return alert("សូមបំពេញព័ត៌មានឱ្យគ្រប់!");
-        const total = cart.reduce((s, x) => s + parseFloat(x.price), 0).toFixed(2);
+        
         const productList = cart.map((p, i) => `${i+1}. ${p.name} ($${p.price})`).join('%0A');
-        const msg = `📦 *កុម្ម៉ង់ថ្មី*%0A👤 ឈ្មោះ: ${name}%0A📞 លេខ: ${phone}%0A📍 ទីតាំង: ${addr}%0A🛒 *ទំនិញ៖*%0A${productList}%0A💰 *សរុប៖ $${total}*`;
+        const msg = `📦 *កុម្ម៉ង់ថ្មី*%0A👤 ឈ្មោះ: ${name}%0A📞 លេខ: ${phone}%0A📍 ទីតាំង: ${addr}%0A🛒 *ទំនិញ៖*%0A${productList}%0A💰 *សរុប៖ $${currentTotal}*`;
         fetch(`https://api.telegram.org/bot${bot_token}/sendMessage?chat_id=${chat_id}&text=${msg}&parse_mode=Markdown`);
-        document.getElementById('payAmount').innerText = total;
-        document.getElementById('bankLink').href = `https://link.payway.com.kh/aba?id=oRF8/quqnct3c&amount=${total}`;
+        
+        const abaLink = `https://pay.ababank.com/oRF8/quqnct3c?amount=${currentTotal}`;
+        document.getElementById('payAmount').innerText = currentTotal;
+        document.getElementById('abaLinkBtn').href = abaLink;
+        
+        closeCart();
         document.getElementById('qrModal').style.display = 'flex';
     }
 
+    function openABALink() {
+        const abaLink = `https://pay.ababank.com/oRF8/quqnct3c?amount=${currentTotal}`;
+        window.location.href = abaLink;
+    }
+
     function sendPaymentNoti() {
-        const total = document.getElementById('payAmount').innerText;
-        const payMsg = `💰 សរុប: $${total}%0A🏧 ស្ថានភាព: កំពុងរង់ចាំស្កេនបង់ប្រាក់...`;
+        const payMsg = `💰 សរុប: $${currentTotal}%0A🏧 ស្ថានភាព: ភ្ញៀវចុចប៊ូតុង "បង់រួចរាល់"`;
         fetch(`https://api.telegram.org/bot${bot_token}/sendMessage?chat_id=${chat_id}&text=${payMsg}&parse_mode=Markdown`)
-        .then(() => { alert("ជោគជ័យ!"); location.reload(); });
+        .then(() => { alert("អរគុណ! យើងនឹងពិនិត្យមើលការបង់ប្រាក់របស់អ្នក។"); location.reload(); });
     }
 
     renderProducts(1);
