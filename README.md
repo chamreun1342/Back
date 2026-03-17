@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Smart Store - 100 Products System</title>
+    <title>Matin Store - 1000 Products System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --main: #0088cc; --orange: #ff9900; --red: #d9534f; --telegram: #24A1DE; --green: #28a745; }
@@ -12,6 +12,7 @@
         .header { background: linear-gradient(135deg, var(--main), #005f91); color: white; text-align: center; padding: 12px; position: sticky; top: 0; z-index: 1000; }
         .container { padding: 10px; max-width: 100%; margin: auto; }
         
+        /* ប្លង់បង្ហាញផលិតផល */
         .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
         .product-card { background: white; border-radius: 12px; padding: 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #eee; display: flex; flex-direction: column; justify-content: space-between; }
         .product-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; margin-bottom: 8px; background: #f9f9f9; }
@@ -19,11 +20,10 @@
         .product-card .price { color: var(--red); font-weight: bold; font-size: 15px; margin-bottom: 8px; display: block; }
         .btn-add { background: var(--orange); color: white; border: none; padding: 8px; border-radius: 20px; width: 100%; font-weight: bold; font-size: 11px; cursor: pointer; }
 
-        /* Pagination Style - កន្លែងប្តូរទំព័រ */
+        /* ប៊ូតុងប្តូរទំព័រ */
         .pagination { display: flex; justify-content: center; align-items: center; gap: 8px; margin: 25px 0; flex-wrap: wrap; padding: 0 10px; }
         .page-btn { padding: 8px 14px; border: 1px solid var(--main); background: white; color: var(--main); border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; transition: 0.3s; }
-        .page-btn.active { background: var(--main); color: white; border-color: var(--main); box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
-        .page-btn:hover:not(.active) { background: #eef9ff; }
+        .page-btn.active { background: var(--main); color: white; border-color: var(--main); }
 
         .floating-controls { position: fixed; bottom: 20px; right: 15px; display: flex; flex-direction: column; gap: 10px; z-index: 2000; }
         .float-btn { width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 5px 15px rgba(0,0,0,0.2); cursor: pointer; text-decoration: none; }
@@ -40,11 +40,12 @@
         .qr-box { background: white; padding: 20px; border-radius: 20px; width: 100%; max-width: 320px; text-align: center; }
         .qr-img { width: 100%; max-width: 230px; border-radius: 10px; border: 2px solid var(--main); margin: 10px 0; cursor: pointer; }
         .btn-aba-open { display: block; background: #005f91; color: white; text-decoration: none; padding: 15px; border-radius: 10px; font-weight: bold; margin-bottom: 15px; font-size: 15px; text-align: center; border: none; width: 100%; cursor: pointer; }
+        .delivery-info { color: #555; font-size: 13px; margin: 10px 0; padding: 8px; border-top: 1px dashed #ccc; display: flex; justify-content: space-between; }
     </style>
 </head>
 <body>
 
-<div class="header"><h3>🏪 ទំនិញ Matin Store</h3></div>
+<div class="header"><h3>🏪 Matin Store</h3></div>
 
 <div class="container">
     <div class="product-grid" id="productGrid"></div>
@@ -66,8 +67,12 @@
             <span onclick="closeCart()" style="font-size:30px; cursor:pointer; color:#999;">&times;</span>
         </div>
         <div id="cartItems"></div>
-        <div style="display:flex; justify-content:space-between; font-weight:bold; margin:20px 0; font-size:18px;">
-            <span>សរុប:</span> <span id="totalTxt" style="color:var(--red);">$0.00</span>
+        <div class="delivery-info">
+            <span>🛵 ថ្លៃដឹកជញ្ជូន (Delivery):</span>
+            <span style="font-weight: bold;">$2.00</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-weight:bold; margin:10px 0; font-size:18px;">
+            <span>សរុបទាំងអស់:</span> <span id="totalTxt" style="color:var(--red);">$0.00</span>
         </div>
         <div class="order-form">
             <input type="text" id="custName" placeholder="👤 ឈ្មោះរបស់អ្នក">
@@ -82,37 +87,44 @@
     <div class="qr-box">
         <h3 style="margin:0; font-size: 16px;">សូមចុចប៊ូតុងខាងក្រោមដើម្បីបង់ប្រាក់</h3>
         <h2 style="color:var(--red); margin: 10px 0;">$ <span id="payAmount">0.00</span></h2>
-        <img src="aba_mobile.jpg" class="qr-img" onclick="openABALink()">
-        <button onclick="openABALink()" class="btn-aba-open">
-            <i class="fas fa-university"></i> បើកកម្មវិធី ABA
-        </button>
+        <img src="ABA_Merchant_20260317152843~2.jpg" class="qr-img" onclick="openABALink()">
+        <button onclick="openABALink()" class="btn-aba-open"><i class="fas fa-university"></i> បើកកម្មវិធី ABA</button>
         <button onclick="sendPaymentNoti()" style="background:var(--green); color:white; border:none; padding:12px; width:100%; border-radius:10px; font-weight:bold; cursor:pointer;">ខ្ញុំបានបង់ប្រាក់រួចរាល់</button>
     </div>
 </div>
 
 <script>
-    // --- កន្លែងបន្ថែមផលិតផល (អ្នកអាចបន្ថែមរហូតដល់ 100 ឬ 1000) ---
+    // ==========================================
+    // ផ្នែក Copy & Paste ផលិតផលនៅត្រង់នេះ
+    // ==========================================
     const allProducts = [
+        // ទំព័រទី ១ (ផលិតផល ១-១០)
         { id: 1, name: "អាវយឺតបុរស ម៉ូតថ្មី ០១", price: "10.00", img: "IMG_20260317_032745_060.jpg" },
-        { id: 2, name: "ខោខូវប៊យ គុណភាពខ្ពស់ ០២", price: "18.50", img: "https://via.placeholder.com/150" },
-        { id: 3, name: "ស្បែកជើងប៉ាតា ០៣", price: "25.00", img: "https://via.placeholder.com/150" },
-        { id: 4, name: "កាបូបស្ពាយក្រោយ ០៤", price: "15.00", img: "https://via.placeholder.com/150" },
-        { id: 5, name: "វ៉ែនតាការពារថ្ងៃ ០៥", price: "8.00", img: "https://via.placeholder.com/150" },
-        { id: 6, name: "នាឡិកាដៃទំនើប ០៦", price: "45.00", img: "https://via.placeholder.com/150" },
-        { id: 7, name: "មួកប៉ារ៉េ ០៧", price: "5.50", img: "https://via.placeholder.com/150" },
-        { id: 8, name: "ខ្សែក្រវាត់ស្បែក ០៨", price: "10.00", img: "https://via.placeholder.com/150" },
-        { id: 9, name: "អាវធំសម្រាប់បុរស ០៩", price: "35.00", img: "https://via.placeholder.com/150" },
-        { id: 10, name: "កាបូបលុយ ១០", price: "7.00", img: "https://via.placeholder.com/150" },
+        { id: 2, name: "ផលិតផលលេខ ០២", price: "12.50", img: "https://via.placeholder.com/150" },
+        { id: 3, name: "ផលិតផលលេខ ០៣", price: "15.00", img: "https://via.placeholder.com/150" },
+        { id: 4, name: "ផលិតផលលេខ ០៤", price: "8.00", img: "https://via.placeholder.com/150" },
+        { id: 5, name: "ផលិតផលលេខ ០៥", price: "20.00", img: "https://via.placeholder.com/150" },
+        { id: 6, name: "ផលិតផលលេខ ០៦", price: "11.00", img: "https://via.placeholder.com/150" },
+        { id: 7, name: "ផលិតផលលេខ ០៧", price: "9.50", img: "https://via.placeholder.com/150" },
+        { id: 8, name: "ផលិតផលលេខ ០៨", price: "13.00", img: "https://via.placeholder.com/150" },
+        { id: 9, name: "ផលិតផលលេខ ០៩", price: "18.00", img: "https://via.placeholder.com/150" },
+        { id: 10, name: "ផលិតផលលេខ ១០", price: "5.00", img: "https://via.placeholder.com/150" },
 
-        // --- ទំព័រទី ២ (ចាប់ពីលេខ ១១ ទៅ វានឹងលោតទៅទំព័រថ្មីដោយខ្លួនឯង) ---
+        // ទំព័រទី ២ (ផលិតផល ១១-២០) - ចម្លងជួរខាងលើមកដាក់ចុះមកក្រោមបន្តទៀត
         { id: 11, name: "ផលិតផលលេខ ១១", price: "12.00", img: "https://via.placeholder.com/150" },
         { id: 12, name: "ផលិតផលលេខ ១២", price: "14.00", img: "https://via.placeholder.com/150" },
-        // ... បន្ថែមបន្តបន្ទាប់ទៀតចុះក្រោម ...
+        { id: 13, name: "ផលិតផលលេខ ១៣", price: "16.00", img: "https://via.placeholder.com/150" },
+        { id: 11, name: "ផលិតផលលេខ ១១", price: "12.00", img: "https://via.placeholder.com/150" },
+        { id: 12, name: "ផលិតផលលេខ ១២", price: "14.00", img: "https://via.placeholder.com/150" },
+        { id: 13, name: "ផលិតផលលេខ ១៣", price: "16.00", img: "https://via.placeholder.com/150" },
+        // អ្នកអាចចម្លងដាក់ចុះក្រោមរហូតដល់ id: 1000...
     ];
+    // ==========================================
 
     let cart = [];
     let curPage = 1;
-    const limit = 10; // កំណត់ ១ ទំព័រ បង្ហាញ ១០ ផលិតផល
+    const limit = 10; // ១ ទំព័រ បង្ហាញ ១០ ផលិតផល
+    const deliveryFee = 2.00; // ថ្លៃដឹក $2
     const bot_token = "8502623825:AAE9MFP9sQXkqEBdHeQ9oZnp9TxU6g5mL3Y";
     const chat_id = "1643504321";
     let currentTotal = 0;
@@ -121,9 +133,7 @@
         curPage = page;
         const grid = document.getElementById('productGrid');
         const start = (page - 1) * limit;
-        const end = start + limit;
-        const itemsToDisplay = allProducts.slice(start, end);
-
+        const itemsToDisplay = allProducts.slice(start, start + limit);
         grid.innerHTML = itemsToDisplay.map(p => `
             <div class="product-card">
                 <img src="${p.img}" class="product-img">
@@ -132,24 +142,20 @@
                 <button class="btn-add" onclick="addToCart(${p.id})">+ ដាក់កន្ត្រក</button>
             </div>
         `).join('');
-        
         renderPager();
-        window.scrollTo({top: 0, behavior: 'smooth'}); // រុញទៅលើវិញពេលប្តូរទំព័រ
+        window.scrollTo({top: 0, behavior: 'smooth'});
     }
 
     function renderPager() {
         const pager = document.getElementById('pagination');
         const totalPages = Math.ceil(allProducts.length / limit);
         pager.innerHTML = "";
-        
         if (totalPages <= 1) return;
-
         for (let i = 1; i <= totalPages; i++) {
             pager.innerHTML += `<button class="page-btn ${i === curPage ? 'active' : ''}" onclick="renderProducts(${i})">${i}</button>`;
         }
     }
 
-    // --- មុខងារផ្សេងៗ (រក្សាដូចដើម) ---
     function addToCart(id) {
         const item = allProducts.find(x => x.id === id);
         cart.push({...item, cartUid: Date.now() + Math.random()});
@@ -166,9 +172,9 @@
 
     function updateCartUI() {
         const list = document.getElementById('cartItems');
-        let total = 0;
+        let subTotal = 0;
         list.innerHTML = cart.map(p => {
-            total += parseFloat(p.price);
+            subTotal += parseFloat(p.price);
             return `<div class="cart-item">
                 <div style="text-align:left;">
                     <div style="font-size:13px; font-weight:bold;">${p.name}</div>
@@ -177,8 +183,9 @@
                 <i class="fas fa-trash-alt" style="color:red; cursor:pointer;" onclick="removeItem(${p.cartUid})"></i>
             </div>`;
         }).join('');
-        document.getElementById('totalTxt').innerText = `$${total.toFixed(2)}`;
-        currentTotal = total.toFixed(2);
+        let finalTotal = subTotal + deliveryFee;
+        document.getElementById('totalTxt').innerText = `$${finalTotal.toFixed(2)}`;
+        currentTotal = finalTotal.toFixed(2);
     }
 
     function removeItem(uid) {
@@ -192,29 +199,25 @@
         const phone = document.getElementById('custPhone').value;
         const addr = document.getElementById('custAddress').value;
         if (!name || !phone || !addr) return alert("សូមបំពេញព័ត៌មានឱ្យគ្រប់!");
-        
         const productList = cart.map((p, i) => `${i+1}. ${p.name} ($${p.price})`).join('%0A');
-        const msg = `📦 *កុម្ម៉ង់ថ្មី*%0A👤 ឈ្មោះ: ${name}%0A📞 លេខ: ${phone}%0A📍 ទីតាំង: ${addr}%0A🛒 *ទំនិញ៖*%0A${productList}%0A💰 *សរុប៖ $${currentTotal}*`;
+        const msg = `📦 *កុម្ម៉ង់ថ្មី*%0A👤 ឈ្មោះ: ${name}%0A📞 លេខ: ${phone}%0A📍 ទីតាំង: ${addr}%0A🛒 *ទំនិញ៖*%0A${productList}%0A🛵 ដឹកជញ្ជូន: $${deliveryFee.toFixed(2)}%0A💰 *សរុប៖ $${currentTotal}*`;
         fetch(`https://api.telegram.org/bot${bot_token}/sendMessage?chat_id=${chat_id}&text=${msg}&parse_mode=Markdown`);
-        
         document.getElementById('payAmount').innerText = currentTotal;
         closeCart();
         document.getElementById('qrModal').style.display = 'flex';
     }
 
     function openABALink() {
-        // បើក Link ដោយឱ្យភ្ញៀវវាយបញ្ចូលទឹកប្រាក់ខ្លួនឯង
-        const abaLink = `https://pay.ababank.com/oRF8/du83nu9t`;
-        window.location.href = abaLink;
+        window.location.href = `https://pay.ababank.com/oRF8/du83nu9t`;
     }
 
     function sendPaymentNoti() {
-        const payMsg = `💰 សរុប: $${currentTotal}%0A🏧 ស្ថានភាព: ភ្ញៀវចុចប៊ូតុង "បង់រួចរាល់"`;
+        const payMsg = `💰 សរុប: $${currentTotal}%0A🏧 ស្ថានភាព: ភ្ញៀវចុចបង់រួចរាល់`;
         fetch(`https://api.telegram.org/bot${bot_token}/sendMessage?chat_id=${chat_id}&text=${payMsg}&parse_mode=Markdown`)
         .then(() => { alert("អរគុណ! យើងនឹងពិនិត្យមើលការបង់ប្រាក់របស់អ្នក។"); location.reload(); });
     }
 
-    renderProducts(1); // ចាប់ផ្តើមបង្ហាញទំព័រទី ១
+    renderProducts(1);
 </script>
 </body>
 </html>
