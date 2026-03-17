@@ -219,4 +219,3 @@
     renderProducts(1);
 </script>
 </body>
-</html>
