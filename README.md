@@ -224,43 +224,43 @@
         <div style="font-size:14px; font-weight:bold; margin-bottom:12px;">💎 SAVING PACKAGES</div>
         <div class="uc-grid">
             <div class="uc-item" onclick="selectUC(this, '60 UC', 0.99)">
-                <img src="gggg.png" alt="UC">
+                <img src="gggg-removebg-preview.png" alt="UC">
                 <br>
                 <b style="color:var(--text-gold);">$0.99</b><br>
                 <span style="font-size:11px;">60 UC</span>
             </div>
             <div class="uc-item" onclick="selectUC(this, '325 UC', 4.49)">
-                <img src="PUBG-Mobile-UC-Station.png" alt="UC">
+                <img src="PUBG-Mobile-UC-Station-removebg-preview.png" alt="UC">
                 <br>
                 <b style="color:var(--text-gold);">$4.99</b><br>
                 <span style="font-size:11px;">325 UC</span>
             </div>
             <div class="uc-item" onclick="selectUC(this, '660 UC', 9.99)">
-                <img src="oss-a3a9e4a98044a39b4cbfe3626d7c375c-removebg-preview.png" alt="UC">
+                <img src="oss-a3a9e4a98044a39b4cbfe3626d7c375c-removebg-preview-removebg-preview.png" alt="UC">
                 <br>
                 <b style="color:var(--text-gold);">$9.99</b><br>
                 <span style="font-size:11px;">660 UC</span>
             </div>
             <div class="uc-item" onclick="selectUC(this, '1800 UC', 24.99)">
-                <img src="oss-a3a9e4a98044a39b4cbfe3626d7c375c-removebg-preview.png" alt="UC">
+                <img src="oss-a3a9e4a98044a39b4cbfe3626d7c375c-removebg-preview-removebg-preview.png" alt="UC">
                 <br>
                 <b style="color:var(--text-gold);">$24.99</b><br>
                 <span style="font-size:11px;">1800 UC</span>
             </div>
             <div class="uc-item" onclick="selectUC(this, '3850 UC', 45.49)">
-                <img src="oss-a3a9e4a98044a39b4cbfe3626d7c375c-removebg-preview.png" alt="UC">
+                <img src="oss-70d65d0c5638c244117f34f2a8254cb6-removebg-preview.png" alt="UC">
                 <br>
                 <b style="color:var(--text-gold);">$45.49</b><br>
                 <span style="font-size:11px;">3850 UC</span>
             </div>
             <div class="uc-item" onclick="selectUC(this, '8100 UC', 90.49)">
-                <img src="oss-70d65d0c5638c244117f34f2a8254cb6.png" alt="UC">
+                <img src="oss-70d65d0c5638c244117f34f2a8254cb6-removebg-preview.png" alt="UC">
                 <br>
                 <b style="color:var(--text-gold);">$90.49</b><br>
                 <span style="font-size:11px;">8100 UC</span>
             </div>
             <div class="uc-item" onclick="selectUC(this, '16200 UC', 180.49)">
-                <img src="oss-70d65d0c5638c244117f34f2a8254cb6.png" alt="UC">
+                <img src="oss-70d65d0c5638c244117f34f2a8254cb6-removebg-preview.png" alt="UC">
                 <br>
                 <b style="color:var(--text-gold);">$180.49</b><br>
                 <span style="font-size:11px;">16200 UC</span>
