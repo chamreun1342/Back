@@ -3,222 +3,371 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Matin Store - 1000 Products System</title>
+    <title>SAKTOPUP - 100% Original Full Version</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
-        :root { --main: #0088cc; --orange: #ff9900; --red: #d9534f; --telegram: #24A1DE; --green: #28a745; }
-        * { box-sizing: border-box; }
-        body { font-family: 'Khmer OS Battambang', sans-serif; background: #f4f7f6; margin: 0; padding-bottom: 90px; }
-        
-        .header { background: linear-gradient(135deg, var(--main), #005f91); color: white; text-align: center; padding: 12px; position: sticky; top: 0; z-index: 1000; }
-        .container { padding: 10px; max-width: 100%; margin: auto; }
-        
-        /* ប្លង់បង្ហាញផលិតផល */
-        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        .product-card { background: white; border-radius: 12px; padding: 10px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #eee; display: flex; flex-direction: column; justify-content: space-between; }
-        .product-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; margin-bottom: 8px; background: #f9f9f9; }
-        .product-card h4 { margin: 5px 0; font-size: 12px; height: 35px; overflow: hidden; color: #333; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-        .product-card .price { color: var(--red); font-weight: bold; font-size: 15px; margin-bottom: 8px; display: block; }
-        .btn-add { background: var(--orange); color: white; border: none; padding: 8px; border-radius: 20px; width: 100%; font-weight: bold; font-size: 11px; cursor: pointer; }
+        :root { 
+            --bg-dark: #070a13; 
+            --bg-card: #0c111c; 
+            --primary-blue: #3dd0f3; 
+            --text-gold: #fcc201; 
+            --text-gray: #777d8a;
+            --white: #ffffff;
+            --aba-blue: #00bcd4;
+        }
 
-        /* ប៊ូតុងប្តូរទំព័រ */
-        .pagination { display: flex; justify-content: center; align-items: center; gap: 8px; margin: 25px 0; flex-wrap: wrap; padding: 0 10px; }
-        .page-btn { padding: 8px 14px; border: 1px solid var(--main); background: white; color: var(--main); border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; transition: 0.3s; }
-        .page-btn.active { background: var(--main); color: white; border-color: var(--main); }
+        * { box-sizing: border-box; font-family: 'Khmer OS Battambang', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background: var(--bg-dark); color: var(--white); margin: 0; padding: 0; overflow-x: hidden; }
 
-        .floating-controls { position: fixed; bottom: 20px; right: 15px; display: flex; flex-direction: column; gap: 10px; z-index: 2000; }
-        .float-btn { width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 5px 15px rgba(0,0,0,0.2); cursor: pointer; text-decoration: none; }
-        .bg-telegram { background: var(--telegram); }
-        .bg-cart { background: var(--main); position: relative; }
-        .badge { position: absolute; top: 0; right: 0; background: var(--red); color: white; font-size: 10px; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid white; }
+        .header-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--bg-dark);
+        }
 
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 3000; align-items: flex-end; justify-content: center; }
-        .modal-content { background: white; width: 100%; max-width: 500px; border-radius: 20px 20px 0 0; padding: 20px; box-sizing: border-box; max-height: 85vh; overflow-y: auto; }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; }
-        .order-form input, .order-form textarea { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #ddd; outline: none; font-family: inherit; }
+        .navbar { background: #070a13; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1a202c; }
+        .logo-text { color: var(--text-gold); font-weight: bold; font-size: 24px; font-style: italic; text-transform: uppercase; cursor: pointer; }
 
-        #qrModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 4000; align-items: center; justify-content: center; padding: 15px; }
-        .qr-box { background: white; padding: 20px; border-radius: 20px; width: 100%; max-width: 320px; text-align: center; }
-        .qr-img { width: 100%; max-width: 230px; border-radius: 10px; border: 2px solid var(--main); margin: 10px 0; cursor: pointer; }
-        .btn-aba-open { display: block; background: #005f91; color: white; text-decoration: none; padding: 15px; border-radius: 10px; font-weight: bold; margin-bottom: 15px; font-size: 15px; text-align: center; border: none; width: 100%; cursor: pointer; }
-        .delivery-info { color: #555; font-size: 13px; margin: 10px 0; padding: 8px; border-top: 1px dashed #ccc; display: flex; justify-content: space-between; }
+        #side-menu { position: fixed; top: 0; right: -280px; width: 280px; height: 100%; background: #0c111c; z-index: 3000; transition: 0.4s; padding: 20px; border-left: 1px solid #1a202c; }
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2500; }
+        .contact-btn { text-decoration: none; display: flex; align-items: center; gap: 12px; background: #1a202c; padding: 15px; border-radius: 10px; margin-bottom: 12px; border: 1px solid #2d3748; color: white; }
+
+        #search-box { 
+            display: none; 
+            padding: 10px 15px; 
+            background: #070a13; 
+            border-bottom: 1px solid #1a202c;
+            overflow: hidden;
+            transition: 0.3s ease;
+        }
+        .search-input { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #334155; background: #000; color: white; outline: none; }
+
+        /* --- Banner Slider ឱ្យនៅជាប់រហូត --- */
+        .banner-container { width: 94%; height: 160px; margin: 15px auto; border-radius: 12px; overflow: hidden; }
+        .swiper { width: 100%; height: 100%; }
+        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
+        .swiper-pagination-bullet { background: #fff; }
+
+        .container { padding: 15px; max-width: 600px; margin: auto; }
+        .section-header { font-size: 14px; font-weight: bold; margin: 20px 0 12px 0; display: flex; align-items: center; gap: 8px; }
+
+        .game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .game-item { background: var(--bg-card); border-radius: 12px; border: 1px solid #1a202c; text-align: center; overflow: hidden; padding-bottom: 10px; cursor: pointer; }
+        .game-item img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+        .btn-topup-sm { background: var(--primary-blue); color: #000; border: none; width: 85%; padding: 5px 0; border-radius: 5px; font-size: 10px; font-weight: bold; margin-top: 5px; }
+
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 25px; }
+        .stat-item { background: #0c111c; border: 1px solid #1a202c; padding: 15px; border-radius: 12px; text-align: center; }
+        .stat-icon { color: var(--primary-blue); font-size: 18px; margin-bottom: 8px; }
+        .stat-item b { font-size: 16px; display: block; margin-bottom: 4px; }
+        .stat-item small { color: var(--text-gray); font-size: 10px; }
+
+        .footer { background: #0c111c; padding: 30px 20px; text-align: left; border-top: 1px solid #1a202c; font-size: 12px; color: var(--text-gray); margin-top: 30px; }
+        .footer-logo { color: var(--text-gold); font-size: 18px; font-weight: bold; margin-bottom: 10px; }
+        .badge-khqr { background: #e53e3e; color: white; padding: 2px 5px; border-radius: 3px; font-size: 10px; font-weight: bold; }
+        .badge-aba { background: var(--aba-blue); color: white; padding: 2px 5px; border-radius: 3px; font-size: 10px; font-weight: bold; }
+
+        #topup-page { display: none; padding-bottom: 120px; }
+        .card-box { background: var(--bg-card); border: 1px solid #1a202c; padding: 15px; border-radius: 12px; margin-bottom: 15px; }
+        .id-input { width: 100%; background: #000; border: 1px solid #1a202c; padding: 12px; border-radius: 8px; color: #49bcf8; font-size: 16px; outline: none; margin-top: 10px; text-align: center; }
+
+        .uc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .uc-item { background: var(--bg-card); border: 1px solid #1a202c; padding: 15px; border-radius: 10px; cursor: pointer; transition: 0.3s; text-align: center; }
+        .uc-item.active { border-color: var(--primary-blue); background: rgba(61, 208, 243, 0.05); }
+        .uc-item img { width: 40px; height: 40px; object-fit: contain; margin-bottom: 8px; }
+
+        .aba-payment-box { background: rgba(0, 188, 212, 0.05); border: 1.5px solid var(--aba-blue); padding: 15px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; }
+        .aba-label { background: var(--aba-blue); color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 10px; margin-right: 10px; }
+        .aba-circle { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--aba-blue); display: flex; align-items: center; justify-content: center; }
+
+        .pay-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #0c111c; padding: 15px 20px; border-top: 1px solid #1a202c; display: none; justify-content: space-between; align-items: center; z-index: 2000; }
+        .btn-pay { background: linear-gradient(90deg, #1e90ff, #00bfff); color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: bold; display: flex; align-items: center; gap: 8px; cursor: pointer; }
     </style>
 </head>
 <body>
 
-<div class="header"><h3>🏪 Matin Store</h3></div>
-
-<div class="container">
-    <div class="product-grid" id="productGrid"></div>
-    <div class="pagination" id="pagination"></div>
-</div>
-
-<div class="floating-controls">
-    <a href="https://t.me/CHEASOKCHAMREUN1111" target="_blank" class="float-btn bg-telegram"><i class="fab fa-telegram-plane" style="font-size: 25px;"></i></a>
-    <div class="float-btn bg-cart" onclick="openCart()">
-        <i class="fas fa-shopping-cart" style="font-size: 20px;"></i>
-        <div class="badge" id="cartBadge">0</div>
+<div class="header-sticky">
+    <nav class="navbar">
+        <div class="logo-text" onclick="goHome()">MATINTOPUP</div>
+        <div style="display:flex; gap:18px; align-items:center; color:white;">
+            <i class="fas fa-search" id="search-icon" onclick="toggleSearch()" style="cursor:pointer; font-size:18px;"></i>
+            <i class="fas fa-bars" onclick="toggleMenu()" style="cursor:pointer; font-size:20px;"></i>
+        </div>
+    </nav>
+    <div id="search-box">
+        <input type="text" placeholder="ស្វែងរកហ្គេម..." class="search-input">
     </div>
 </div>
 
-<div class="modal" id="cartModal">
-    <div class="modal-content">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-            <h3 style="margin:0;">🛒 កន្ត្រកអីវ៉ាន់</h3>
-            <span onclick="closeCart()" style="font-size:30px; cursor:pointer; color:#999;">&times;</span>
+<div id="side-menu">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+        <span style="color:gold; font-weight:bold; font-size:18px;">MATINTOPUP</span>
+        <i class="fas fa-times" onclick="toggleMenu()" style="cursor:pointer; font-size:20px;"></i>
+    </div>
+    
+    <a href="https://t.me/matintopup" target="_blank" class="contact-btn">
+        <i class="fab fa-telegram" style="color:#24A1DE; font-size:24px;"></i>
+        <div>
+            <div style="font-size:14px; font-weight:bold;">តេឡេក្រាមផ្ទាល់ខ្លួន</div>
+            <div style="font-size:11px; color:#777d8a;">ទាក់ទងមកយើងផ្ទាល់</div>
         </div>
-        <div id="cartItems"></div>
-        <div class="delivery-info">
-            <span>🛵 ថ្លៃដឹកជញ្ជូន (Delivery):</span>
-            <span style="font-weight: bold;">$2.00</span>
+    </a>
+
+    <a href="https://t.me/Matintopup168" target="_blank" class="contact-btn">
+        <i class="fas fa-users" style="color:#3dd0f3; font-size:20px;"></i>
+        <div>
+            <div style="font-size:14px; font-weight:bold;">តេឡេក្រាមគ្រុប</div>
+            <div style="font-size:11px; color:#777d8a;">ចូលរួមសហគមន៍របស់យើង</div>
         </div>
-        <div style="display:flex; justify-content:space-between; font-weight:bold; margin:10px 0; font-size:18px;">
-            <span>សរុបទាំងអស់:</span> <span id="totalTxt" style="color:var(--red);">$0.00</span>
+    </a>
+</div>
+<div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+
+<div class="banner-container">
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="IMG_1257290665938849.jpeg"></div>
+            <div class="swiper-slide"><img src="IMG_1507798854091986.jpeg"></div>
+            <div class="swiper-slide"><img src="IMG_1662973291394423.jpeg"></div>
         </div>
-        <div class="order-form">
-            <input type="text" id="custName" placeholder="👤 ឈ្មោះរបស់អ្នក">
-            <input type="number" id="custPhone" placeholder="📞 លេខទូរសព្ទ">
-            <textarea id="custAddress" placeholder="📍 ទីតាំងដឹកជញ្ជូន"></textarea>
-            <button onclick="submitOrder()" style="width:100%; padding:15px; background:var(--green); color:white; border:none; border-radius:10px; font-weight:bold; font-size:16px;">✅ បញ្ជាទិញឥឡូវនេះ</button>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+
+<div id="home-page">
+    <div class="container">
+        <div class="section-header">⭐ BEST SELLING</div>
+        <div class="game-grid">
+            <div class="game-item" onclick="openTopup('PUBG MOBILE', 'PUBG.jpg')">
+                <img src="PUBG.jpg">
+                <div style="font-size:10px; padding:5px;">PUBG MOBILE</div>
+                <button class="btn-topup-sm">TOP UP</button>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item"><i class="fas fa-box stat-icon"></i><b>10,000,000+</b><small>Orders delivered</small></div>
+            <div class="stat-item"><i class="fas fa-gamepad stat-icon"></i><b>100+</b><small>Games available</small></div>
+            <div class="stat-item"><i class="fas fa-bolt stat-icon"></i><b>1 sec - 5 min</b><small>Instant delivery</small></div>
+            <div class="stat-item"><i class="fas fa-headset stat-icon"></i><b>24/7</b><small>Support on live-chat</small></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-logo">MATINTOPUP</div>
+        <p>Official Partner - Fast delivery. Secure payment. Trusted top-up service for gamers worldwide.</p>
+        <p>© 2026 Matin Topup. All rights reserved.</p>
+        <div style="margin-top:15px; font-size:11px;">
+            We accept: <span class="badge-khqr">KHQR</span> <span class="badge-aba">ABA</span>
         </div>
     </div>
 </div>
 
-<div id="qrModal">
-    <div class="qr-box">
-        <h3 style="margin:0; font-size: 16px;">សូមចុចប៊ូតុងខាងក្រោមដើម្បីបង់ប្រាក់</h3>
-        <h2 style="color:var(--red); margin: 10px 0;">$ <span id="payAmount">0.00</span></h2>
-        <img src="IMG_20260317_155742_134~2.jpg" class="qr-img" onclick="openABALink()">
-        <button onclick="openABALink()" class="btn-aba-open"><i class="fas fa-university"></i> បើកកម្មវិធី ABA</button>
-        <button onclick="sendPaymentNoti()" style="background:var(--green); color:white; border:none; padding:12px; width:100%; border-radius:10px; font-weight:bold; cursor:pointer;">ខ្ញុំបានបង់ប្រាក់រួចរាល់</button>
+<div id="topup-page">
+    <div class="container">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
+            <img id="p-img" src="" style="width:60px; height:60px; border-radius:10px;">
+            <div>
+                <h2 id="p-title" style="margin:0; font-size:18px;"></h2>
+                <div style="font-size:10px; color:var(--text-gray); margin-top:4px;">
+                    <i class="fas fa-shield-alt" style="color:#00ff00;"></i> Safety guarantees &nbsp; 
+                    <i class="fas fa-bolt" style="color:orange;"></i> Instant delivery
+                </div>
+            </div>
+        </div>
+
+        <div class="card-box">
+            <div style="font-size:12px;"><i class="fas fa-user-circle" style="color:var(--primary-blue);"></i> Enter Your Information</div>
+            <input type="number" class="id-input" placeholder="បញ្ចូលលេខ ID នៅទីនេះ" id="u-id">
+            <div id="check-container" style="display: none; color:#00ff00; font-size:12px; text-align:right; margin-top:8px; font-weight:bold;">
+                ✅ <span id="id-label"></span>
+            </div>
+        </div>
+
+        <div style="font-size:14px; font-weight:bold; margin-bottom:12px;">💎 SAVING PACKAGES</div>
+        <div class="uc-grid">
+            <div class="uc-item" onclick="selectUC(this, '60 UC', 0.99)">
+                <img src="gggg.png" alt="UC">
+                <br>
+                <b style="color:var(--text-gold);">$0.99</b><br>
+                <span style="font-size:11px;">60 UC</span>
+            </div>
+            <div class="uc-item" onclick="selectUC(this, '325 UC', 4.49)">
+                <img src="PUBG-Mobile-UC-Station.png" alt="UC">
+                <br>
+                <b style="color:var(--text-gold);">$4.99</b><br>
+                <span style="font-size:11px;">325 UC</span>
+            </div>
+            <div class="uc-item" onclick="selectUC(this, '660 UC', 9.99)">
+                <img src="oss-a3a9e4a98044a39b4cbfe3626d7c375c-removebg-preview.png" alt="UC">
+                <br>
+                <b style="color:var(--text-gold);">$9.99</b><br>
+                <span style="font-size:11px;">660 UC</span>
+            </div>
+            <div class="uc-item" onclick="selectUC(this, '1800 UC', 24.99)">
+                <img src="oss-a3a9e4a98044a39b4cbfe3626d7c375c-removebg-preview.png" alt="UC">
+                <br>
+                <b style="color:var(--text-gold);">$24.99</b><br>
+                <span style="font-size:11px;">1800 UC</span>
+            </div>
+            <div class="uc-item" onclick="selectUC(this, '3850 UC', 45.49)">
+                <img src="oss-a3a9e4a98044a39b4cbfe3626d7c375c-removebg-preview.png" alt="UC">
+                <br>
+                <b style="color:var(--text-gold);">$45.49</b><br>
+                <span style="font-size:11px;">3850 UC</span>
+            </div>
+            <div class="uc-item" onclick="selectUC(this, '8100 UC', 90.49)">
+                <img src="oss-70d65d0c5638c244117f34f2a8254cb6.png" alt="UC">
+                <br>
+                <b style="color:var(--text-gold);">$90.49</b><br>
+                <span style="font-size:11px;">8100 UC</span>
+            </div>
+            <div class="uc-item" onclick="selectUC(this, '16200 UC', 180.49)">
+                <img src="oss-70d65d0c5638c244117f34f2a8254cb6.png" alt="UC">
+                <br>
+                <b style="color:var(--text-gold);">$180.49</b><br>
+                <span style="font-size:11px;">16200 UC</span>
+            </div>
+            <div class="uc-item" onclick="selectUC(this, 'Weekly Mythic Emblem Value Pack', 3.49)">
+                <img src="images.jpeg" alt="UC">
+                <br>
+                <b style="color:var(--text-gold);">$3.49</b><br>
+                <span style="font-size:11px;">Weekly Mythic Emblem Value Pack</span>
+            </div>
+        </div>
+
+        <div style="font-size:14px; font-weight:bold; margin:25px 0 12px 0;"><i class="fas fa-wallet" style="color:var(--primary-blue);"></i> Payment Method</div>
+        <div class="aba-payment-box">
+            <div style="display:flex; align-items:center;">
+                <span class="aba-label">ABA</span>
+                <div>
+                    <div style="font-size:13px; font-weight:bold;">ABA KHQR</div>
+                    <div style="font-size:10px; color:var(--text-gray);">Scan to pay with any banking app</div>
+                </div>
+            </div>
+            <div class="aba-circle"><i class="fas fa-check" style="color:var(--aba-blue); font-size:10px;"></i></div>
+        </div>
     </div>
 </div>
+
+<div class="pay-bar" id="pay-bar">
+    <div>
+        <div style="font-size:12px; color:var(--text-gray);">Total: <span id="total-price" style="color:var(--text-gold); font-weight:bold;">$0.00</span></div>
+        <div style="font-size:10px;">Product: <span id="prod-name">-</span></div>
+    </div>
+    <button class="btn-pay" onclick="startPayment()"><i class="fas fa-shopping-cart"></i> Pay Now</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
-    // ==========================================
-    // ផ្នែក Copy & Paste ផលិតផលនៅត្រង់នេះ
-    // ==========================================
-    const allProducts = [
-        // ទំព័រទី ១ (ផលិតផល ១-១០)
-        { id: 1, name: "អាវយឺតបុរស ម៉ូតថ្មី ០១", price: "10.00", img: "IMG_20260317_032745_060.jpg" },
-        { id: 2, name: "ផលិតផលលេខ ០២", price: "12.50", img: "https://via.placeholder.com/150" },
-        { id: 3, name: "ផលិតផលលេខ ០៣", price: "15.00", img: "https://via.placeholder.com/150" },
-        { id: 4, name: "ផលិតផលលេខ ០៤", price: "8.00", img: "https://via.placeholder.com/150" },
-        { id: 5, name: "ផលិតផលលេខ ០៥", price: "20.00", img: "https://via.placeholder.com/150" },
-        { id: 6, name: "ផលិតផលលេខ ០៦", price: "11.00", img: "https://via.placeholder.com/150" },
-        { id: 7, name: "ផលិតផលលេខ ០៧", price: "9.50", img: "https://via.placeholder.com/150" },
-        { id: 8, name: "ផលិតផលលេខ ០៨", price: "13.00", img: "https://via.placeholder.com/150" },
-        { id: 9, name: "ផលិតផលលេខ ០៩", price: "18.00", img: "https://via.placeholder.com/150" },
-        { id: 10, name: "ផលិតផលលេខ ១០", price: "5.00", img: "https://via.placeholder.com/150" },
+    // Setup Swiper Slider
+    const swiper = new Swiper('.mySwiper', {
+        loop: true,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+    });
 
-        // ទំព័រទី ២ (ផលិតផល ១១-២០) - ចម្លងជួរខាងលើមកដាក់ចុះមកក្រោមបន្តទៀត
-        { id: 11, name: "ផលិតផលលេខ ១១", price: "12.00", img: "https://via.placeholder.com/150" },
-        { id: 12, name: "ផលិតផលលេខ ១២", price: "14.00", img: "https://via.placeholder.com/150" },
-        { id: 13, name: "ផលិតផលលេខ ១៣", price: "16.00", img: "https://via.placeholder.com/150" },
-        { id: 11, name: "ផលិតផលលេខ ១១", price: "12.00", img: "https://via.placeholder.com/150" },
-        { id: 12, name: "ផលិតផលលេខ ១២", price: "14.00", img: "https://via.placeholder.com/150" },
-        { id: 13, name: "ផលិតផលលេខ ១៣", price: "16.00", img: "https://via.placeholder.com/150" },
-        // អ្នកអាចចម្លងដាក់ចុះក្រោមរហូតដល់ id: 1000...
-    ];
-    // ==========================================
+    const searchIcon = document.getElementById('search-icon');
+    const searchBox = document.getElementById('search-box');
 
-    let cart = [];
-    let curPage = 1;
-    const limit = 10; // ១ ទំព័រ បង្ហាញ ១០ ផលិតផល
-    const deliveryFee = 2.00; // ថ្លៃដឹក $2
-    const bot_token = "8502623825:AAE9MFP9sQXkqEBdHeQ9oZnp9TxU6g5mL3Y";
-    const chat_id = "1643504321";
-    let currentTotal = 0;
+    // variable បន្ថែមសម្រាប់ផ្ទុកតម្លៃ
+    let finalPrice = 0;
+    let finalPack = "";
 
-    function renderProducts(page) {
-        curPage = page;
-        const grid = document.getElementById('productGrid');
-        const start = (page - 1) * limit;
-        const itemsToDisplay = allProducts.slice(start, start + limit);
-        grid.innerHTML = itemsToDisplay.map(p => `
-            <div class="product-card">
-                <img src="${p.img}" class="product-img">
-                <h4>${p.name}</h4>
-                <span class="price">$${p.price}</span>
-                <button class="btn-add" onclick="addToCart(${p.id})">+ ដាក់កន្ត្រក</button>
-            </div>
-        `).join('');
-        renderPager();
-        window.scrollTo({top: 0, behavior: 'smooth'});
+    function openTopup(name, img) {
+        searchIcon.style.display = 'none';
+        searchBox.style.display = 'none';
+        document.getElementById('home-page').style.display = 'none';
+        document.getElementById('topup-page').style.display = 'block';
+        document.getElementById('pay-bar').style.display = 'flex';
+        document.getElementById('p-title').innerText = name;
+        document.getElementById('p-img').src = img;
+        window.scrollTo(0,0);
     }
 
-    function renderPager() {
-        const pager = document.getElementById('pagination');
-        const totalPages = Math.ceil(allProducts.length / limit);
-        pager.innerHTML = "";
-        if (totalPages <= 1) return;
-        for (let i = 1; i <= totalPages; i++) {
-            pager.innerHTML += `<button class="page-btn ${i === curPage ? 'active' : ''}" onclick="renderProducts(${i})">${i}</button>`;
+    function goHome() {
+        searchIcon.style.display = 'block';
+        document.getElementById('home-page').style.display = 'block';
+        document.getElementById('topup-page').style.display = 'none';
+        document.getElementById('pay-bar').style.display = 'none';
+    }
+
+    function selectUC(el, name, price) {
+        document.querySelectorAll('.uc-item').forEach(i => i.classList.remove('active'));
+        el.classList.add('active');
+        finalPrice = price;
+        finalPack = name;
+        document.getElementById('total-price').innerText = '$' + price.toFixed(2);
+        document.getElementById('prod-name').innerText = name;
+    }
+
+    // --- មុខងារបង់ប្រាក់ - រក្សាទម្រង់ដើមបង ១០០% តែបន្ថែមការផ្ញើទៅ Bot ---
+    function startPayment() {
+        const id = document.getElementById('u-id').value;
+        if (!id || finalPack === "") { 
+            alert("សូមបញ្ចូលលេខ ID និងជ្រើសរើសកញ្ចប់ UC ជាមុនសិន!"); 
+            return; 
+        }
+
+        // --- កន្លែងប្តូរ Token និង Chat ID របស់បង ---
+        const telegram_token = "8502623825:AAE9MFP9sQXkqEBdHeQ9oZnp9TxU6g5mL3Y"; 
+        const chat_id = "1643504321";
+
+        const message = `🔔 ការកុម្ម៉ង់ថ្មី!%0A🎮 ហ្គេម៖ ${document.getElementById('p-title').innerText}%0A🆔 ID ភ្ញៀវ៖ ${id}%0A💎 កញ្ចប់៖ ${finalPack}%0A💰 តម្លៃ៖ $${finalPrice.toFixed(2)}`;
+
+        // ១. ផ្ញើទៅ Bot ជាមុន (ស្ងាត់ៗ)
+        fetch(`https://api.telegram.org/bot${telegram_token}/sendMessage?chat_id=${chat_id}&text=${message}`)
+        .then(() => {
+            // ២. រួចហើយទើបលោតទៅ ABA តាមក្រោយភ្លាម
+            window.location.href = "https://link.payway.com.kh/ABAPAYfN4261854"; 
+        })
+        .catch(() => {
+            // បើមានបញ្ហាអ៊ីនធឺណិត ក៏ត្រូវឱ្យភ្ញៀវបន្តទៅ ABA ដែរ
+            window.location.href = "https://link.payway.com.kh/ABAPAYfN4261854";
+        });
+    }
+
+    function toggleMenu() {
+        const menu = document.getElementById('side-menu');
+        const overlay = document.getElementById('overlay');
+        if (menu.style.right === '0px') {
+            menu.style.right = '-280px';
+            overlay.style.display = 'none';
+        } else {
+            menu.style.right = '0px';
+            overlay.style.display = 'block';
         }
     }
 
-    function addToCart(id) {
-        const item = allProducts.find(x => x.id === id);
-        cart.push({...item, cartUid: Date.now() + Math.random()});
-        document.getElementById('cartBadge').innerText = cart.length;
+    function toggleSearch() {
+        if (searchBox.style.display === 'none' || searchBox.style.display === '') {
+            searchBox.style.display = 'block';
+            searchIcon.classList.replace('fa-search', 'fa-times');
+        } else {
+            searchBox.style.display = 'none';
+            searchIcon.classList.replace('fa-times', 'fa-search');
+        }
     }
 
-    function openCart() {
-        if(cart.length === 0) return alert("កន្ត្រកទំនេរ!");
-        updateCartUI();
-        document.getElementById('cartModal').style.display = 'flex';
-    }
-
-    function closeCart() { document.getElementById('cartModal').style.display = 'none'; }
-
-    function updateCartUI() {
-        const list = document.getElementById('cartItems');
-        let subTotal = 0;
-        list.innerHTML = cart.map(p => {
-            subTotal += parseFloat(p.price);
-            return `<div class="cart-item">
-                <div style="text-align:left;">
-                    <div style="font-size:13px; font-weight:bold;">${p.name}</div>
-                    <div style="color:var(--red); font-size:12px;">$${p.price}</div>
-                </div>
-                <i class="fas fa-trash-alt" style="color:red; cursor:pointer;" onclick="removeItem(${p.cartUid})"></i>
-            </div>`;
-        }).join('');
-        let finalTotal = subTotal + deliveryFee;
-        document.getElementById('totalTxt').innerText = `$${finalTotal.toFixed(2)}`;
-        currentTotal = finalTotal.toFixed(2);
-    }
-
-    function removeItem(uid) {
-        cart = cart.filter(p => p.cartUid !== uid);
-        document.getElementById('cartBadge').innerText = cart.length;
-        if (cart.length === 0) closeCart(); else updateCartUI();
-    }
-
-    function submitOrder() {
-        const name = document.getElementById('custName').value;
-        const phone = document.getElementById('custPhone').value;
-        const addr = document.getElementById('custAddress').value;
-        if (!name || !phone || !addr) return alert("សូមបំពេញព័ត៌មានឱ្យគ្រប់!");
-        const productList = cart.map((p, i) => `${i+1}. ${p.name} ($${p.price})`).join('%0A');
-        const msg = `📦 *កុម្ម៉ង់ថ្មី*%0A👤 ឈ្មោះ: ${name}%0A📞 លេខ: ${phone}%0A📍 ទីតាំង: ${addr}%0A🛒 *ទំនិញ៖*%0A${productList}%0A🛵 ដឹកជញ្ជូន: $${deliveryFee.toFixed(2)}%0A💰 *សរុប៖ $${currentTotal}*`;
-        fetch(`https://api.telegram.org/bot${bot_token}/sendMessage?chat_id=${chat_id}&text=${msg}&parse_mode=Markdown`);
-        document.getElementById('payAmount').innerText = currentTotal;
-        closeCart();
-        document.getElementById('qrModal').style.display = 'flex';
-    }
-
-    function openABALink() {
-        window.location.href = `https://pay.ababank.com/oRF8/du83nu9t`;
-    }
-
-    function sendPaymentNoti() {
-        const payMsg = `💰 សរុប: $${currentTotal}%0A🏧 ស្ថានភាព: ភ្ញៀវចុចបង់រួចរាល់`;
-        fetch(`https://api.telegram.org/bot${bot_token}/sendMessage?chat_id=${chat_id}&text=${payMsg}&parse_mode=Markdown`)
-        .then(() => { alert("អរគុណ! យើងនឹងពិនិត្យមើលការបង់ប្រាក់របស់អ្នក។"); location.reload(); });
-    }
-
-    renderProducts(1);
+    document.getElementById('u-id').addEventListener('input', function() {
+        const checkContainer = document.getElementById('check-container');
+        const idLabel = document.getElementById('id-label');
+        if (this.value.length > 0) {
+            checkContainer.style.display = 'block';
+            idLabel.innerText = this.value;
+        } else {
+            checkContainer.style.display = 'none';
+        }
+    });
 </script>
 </body>
 </html>
