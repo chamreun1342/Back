@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>MATINTOPUP - 100% Original Full Version</title>
+    <title>SAKTOPUP - 100% Original Full Version</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
@@ -16,15 +16,21 @@
             --aba-blue: #00bcd4;
         }
 
-        * { box-sizing: border-box; font-family: 'Khmer OS Battambang', sans-serif; -webkit-tap-highlight-color: transparent; }
+        /* ផ្នែកកែសម្រួលដើម្បីឱ្យពេញអេក្រង់ទូរសព្ទ */
+        * { 
+            box-sizing: border-box; /* បង្ខំឱ្យរាល់ប្រអប់ទាំងអស់ស្ថិតក្នុងទទឹង ១០០% */
+            font-family: 'Khmer OS Battambang', sans-serif; 
+            -webkit-tap-highlight-color: transparent; 
+        }
+        
         body { 
             background: var(--bg-dark); 
             color: var(--white); 
             margin: 0; 
             padding: 0; 
-            overflow-x: hidden;
-            /* ការពារកុំឱ្យបាត់អក្សរត្រង់កន្លែងឆកទូរសព្ទ */
-            padding-top: env(safe-area-inset-top);
+            overflow-x: hidden; /* បិទការរអិលទៅឆ្វេងស្តាំ ដែលធ្វើឱ្យបាត់មួយចំហៀង */
+            width: 100%;
+            position: relative;
         }
 
         .header-sticky {
@@ -32,9 +38,19 @@
             top: 0;
             z-index: 1000;
             background: var(--bg-dark);
+            width: 100%;
         }
 
-        .navbar { background: #070a13; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1a202c; }
+        .navbar { 
+            background: #070a13; 
+            padding: 12px 15px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 1px solid #1a202c; 
+            width: 100%;
+        }
+        
         .logo-text { color: var(--text-gold); font-weight: bold; font-size: 24px; font-style: italic; text-transform: uppercase; cursor: pointer; }
 
         #side-menu { position: fixed; top: 0; right: -280px; width: 280px; height: 100%; background: #0c111c; z-index: 3000; transition: 0.4s; padding: 20px; border-left: 1px solid #1a202c; }
@@ -51,45 +67,58 @@
         }
         .search-input { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #334155; background: #000; color: white; outline: none; }
 
-        /* --- Banner Slider កែឱ្យសមាមាត្រអេក្រង់ --- */
-        .banner-container { width: 94%; margin: 15px auto; border-radius: 12px; overflow: hidden; aspect-ratio: 16 / 8; }
+        /* --- Banner Slider រក្សាទម្រង់ដើមបង --- */
+        .banner-container { 
+            width: 94%; 
+            height: 160px; 
+            margin: 15px auto; 
+            border-radius: 12px; 
+            overflow: hidden; 
+        }
         .swiper { width: 100%; height: 100%; }
         .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
         .swiper-pagination-bullet { background: #fff; }
 
-        .container { padding: 15px; max-width: 600px; margin: auto; }
+        /* កែសម្រួល Container ឱ្យ Fit ជាមួយទូរសព្ទ */
+        .container { 
+            padding: 15px; 
+            width: 100%; 
+            max-width: 600px; 
+            margin: auto; 
+            overflow: hidden;
+        }
+
         .section-header { font-size: 14px; font-weight: bold; margin: 20px 0 12px 0; display: flex; align-items: center; gap: 8px; }
 
-        .game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; }
         .game-item { background: var(--bg-card); border-radius: 12px; border: 1px solid #1a202c; text-align: center; overflow: hidden; padding-bottom: 10px; cursor: pointer; }
         .game-item img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
         .btn-topup-sm { background: var(--primary-blue); color: #000; border: none; width: 85%; padding: 5px 0; border-radius: 5px; font-size: 10px; font-weight: bold; margin-top: 5px; }
 
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 25px; }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 25px; width: 100%; }
         .stat-item { background: #0c111c; border: 1px solid #1a202c; padding: 15px; border-radius: 12px; text-align: center; }
         .stat-icon { color: var(--primary-blue); font-size: 18px; margin-bottom: 8px; }
         .stat-item b { font-size: 16px; display: block; margin-bottom: 4px; }
         .stat-item small { color: var(--text-gray); font-size: 10px; }
 
-        .footer { background: #0c111c; padding: 30px 20px; text-align: left; border-top: 1px solid #1a202c; font-size: 12px; color: var(--text-gray); margin-top: 30px; }
+        .footer { background: #0c111c; padding: 30px 20px; width: 100%; text-align: left; border-top: 1px solid #1a202c; font-size: 12px; color: var(--text-gray); margin-top: 30px; }
         .footer-logo { color: var(--text-gold); font-size: 18px; font-weight: bold; margin-bottom: 10px; }
         .badge-khqr { background: #e53e3e; color: white; padding: 2px 5px; border-radius: 3px; font-size: 10px; font-weight: bold; }
         .badge-aba { background: var(--aba-blue); color: white; padding: 2px 5px; border-radius: 3px; font-size: 10px; font-weight: bold; }
 
-        #topup-page { display: none; padding-bottom: 140px; }
-        .card-box { background: var(--bg-card); border: 1px solid #1a202c; padding: 15px; border-radius: 12px; margin-bottom: 15px; }
+        #topup-page { display: none; padding-bottom: 120px; width: 100%; }
+        .card-box { background: var(--bg-card); border: 1px solid #1a202c; padding: 15px; border-radius: 12px; margin-bottom: 15px; width: 100%; }
         .id-input { width: 100%; background: #000; border: 1px solid #1a202c; padding: 12px; border-radius: 8px; color: #49bcf8; font-size: 16px; outline: none; margin-top: 10px; text-align: center; }
 
-        .uc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .uc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
         .uc-item { background: var(--bg-card); border: 1px solid #1a202c; padding: 15px; border-radius: 10px; cursor: pointer; transition: 0.3s; text-align: center; }
         .uc-item.active { border-color: var(--primary-blue); background: rgba(61, 208, 243, 0.05); }
         .uc-item img { width: 40px; height: 40px; object-fit: contain; margin-bottom: 8px; }
 
-        .aba-payment-box { background: rgba(0, 188, 212, 0.05); border: 1.5px solid var(--aba-blue); padding: 15px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; }
+        .aba-payment-box { background: rgba(0, 188, 212, 0.05); border: 1.5px solid var(--aba-blue); padding: 15px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; width: 100%; }
         .aba-label { background: var(--aba-blue); color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 10px; margin-right: 10px; }
         .aba-circle { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--aba-blue); display: flex; align-items: center; justify-content: center; }
 
-        /* Pay bar កែឱ្យត្រូវនឹង Safe Area របស់ទូរសព្ទ */
         .pay-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #0c111c; padding: 15px 20px calc(15px + env(safe-area-inset-bottom)); border-top: 1px solid #1a202c; display: none; justify-content: space-between; align-items: center; z-index: 2000; }
         .btn-pay { background: linear-gradient(90deg, #1e90ff, #00bfff); color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: bold; display: flex; align-items: center; gap: 8px; cursor: pointer; }
     </style>
@@ -202,7 +231,7 @@
                 <b style="color:var(--text-gold);">$0.99</b><br>
                 <span style="font-size:11px;">60 UC</span>
             </div>
-            <div class="uc-item" onclick="selectUC(this, '325 UC', 4.99)">
+            <div class="uc-item" onclick="selectUC(this, '325 UC', 4.49)">
                 <img src="PUBG-Mobile-UC-Station.png" alt="UC">
                 <br>
                 <b style="color:var(--text-gold);">$4.99</b><br>
