@@ -1,8 +1,8 @@
 <html lang="km">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SAKTOPUP - 100% Original Full Version</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>MATINTOPUP - 100% Original Full Version</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
@@ -17,7 +17,15 @@
         }
 
         * { box-sizing: border-box; font-family: 'Khmer OS Battambang', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background: var(--bg-dark); color: var(--white); margin: 0; padding: 0; overflow-x: hidden; }
+        body { 
+            background: var(--bg-dark); 
+            color: var(--white); 
+            margin: 0; 
+            padding: 0; 
+            overflow-x: hidden;
+            /* ការពារកុំឱ្យបាត់អក្សរត្រង់កន្លែងឆកទូរសព្ទ */
+            padding-top: env(safe-area-inset-top);
+        }
 
         .header-sticky {
             position: sticky;
@@ -43,8 +51,8 @@
         }
         .search-input { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #334155; background: #000; color: white; outline: none; }
 
-        /* --- Banner Slider ឱ្យនៅជាប់រហូត --- */
-        .banner-container { width: 94%; height: 160px; margin: 15px auto; border-radius: 12px; overflow: hidden; }
+        /* --- Banner Slider កែឱ្យសមាមាត្រអេក្រង់ --- */
+        .banner-container { width: 94%; margin: 15px auto; border-radius: 12px; overflow: hidden; aspect-ratio: 16 / 8; }
         .swiper { width: 100%; height: 100%; }
         .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
         .swiper-pagination-bullet { background: #fff; }
@@ -68,7 +76,7 @@
         .badge-khqr { background: #e53e3e; color: white; padding: 2px 5px; border-radius: 3px; font-size: 10px; font-weight: bold; }
         .badge-aba { background: var(--aba-blue); color: white; padding: 2px 5px; border-radius: 3px; font-size: 10px; font-weight: bold; }
 
-        #topup-page { display: none; padding-bottom: 120px; }
+        #topup-page { display: none; padding-bottom: 140px; }
         .card-box { background: var(--bg-card); border: 1px solid #1a202c; padding: 15px; border-radius: 12px; margin-bottom: 15px; }
         .id-input { width: 100%; background: #000; border: 1px solid #1a202c; padding: 12px; border-radius: 8px; color: #49bcf8; font-size: 16px; outline: none; margin-top: 10px; text-align: center; }
 
@@ -81,7 +89,8 @@
         .aba-label { background: var(--aba-blue); color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 10px; margin-right: 10px; }
         .aba-circle { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--aba-blue); display: flex; align-items: center; justify-content: center; }
 
-        .pay-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #0c111c; padding: 15px 20px; border-top: 1px solid #1a202c; display: none; justify-content: space-between; align-items: center; z-index: 2000; }
+        /* Pay bar កែឱ្យត្រូវនឹង Safe Area របស់ទូរសព្ទ */
+        .pay-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #0c111c; padding: 15px 20px calc(15px + env(safe-area-inset-bottom)); border-top: 1px solid #1a202c; display: none; justify-content: space-between; align-items: center; z-index: 2000; }
         .btn-pay { background: linear-gradient(90deg, #1e90ff, #00bfff); color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: bold; display: flex; align-items: center; gap: 8px; cursor: pointer; }
     </style>
 </head>
@@ -106,7 +115,7 @@
         <i class="fas fa-times" onclick="toggleMenu()" style="cursor:pointer; font-size:20px;"></i>
     </div>
     
-    <a href="https://t.me/matintopup" target="_blank" class="contact-btn">
+    <a href="https://t.me/Matintopup168" target="_blank" class="contact-btn">
         <i class="fab fa-telegram" style="color:#24A1DE; font-size:24px;"></i>
         <div>
             <div style="font-size:14px; font-weight:bold;">តេឡេក្រាមផ្ទាល់ខ្លួន</div>
@@ -114,7 +123,7 @@
         </div>
     </a>
 
-    <a href="https://t.me/Matintopup168" target="_blank" class="contact-btn">
+    <a href="https://t.me/matintopup" target="_blank" class="contact-btn">
         <i class="fas fa-users" style="color:#3dd0f3; font-size:20px;"></i>
         <div>
             <div style="font-size:14px; font-weight:bold;">តេឡេក្រាមគ្រុប</div>
@@ -193,7 +202,7 @@
                 <b style="color:var(--text-gold);">$0.99</b><br>
                 <span style="font-size:11px;">60 UC</span>
             </div>
-            <div class="uc-item" onclick="selectUC(this, '325 UC', 4.49)">
+            <div class="uc-item" onclick="selectUC(this, '325 UC', 4.99)">
                 <img src="PUBG-Mobile-UC-Station.png" alt="UC">
                 <br>
                 <b style="color:var(--text-gold);">$4.99</b><br>
@@ -229,11 +238,11 @@
                 <b style="color:var(--text-gold);">$180.49</b><br>
                 <span style="font-size:11px;">16200 UC</span>
             </div>
-            <div class="uc-item" onclick="selectUC(this, 'Weekly Mythic Emblem Value Pack', 3.49)">
+            <div class="uc-item" onclick="selectUC(this, 'Weekly Mythic Pack', 3.49)">
                 <img src="images.jpeg" alt="UC">
                 <br>
                 <b style="color:var(--text-gold);">$3.49</b><br>
-                <span style="font-size:11px;">Weekly Mythic Emblem Value Pack</span>
+                <span style="font-size:11px;">Weekly Mythic Pack</span>
             </div>
         </div>
 
@@ -262,23 +271,14 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
-    // Setup Swiper Slider
     const swiper = new Swiper('.mySwiper', {
         loop: true,
-        autoplay: {
-            delay: 3000,
-            disableOnInteraction: false,
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
+        autoplay: { delay: 3000, disableOnInteraction: false },
+        pagination: { el: '.swiper-pagination', clickable: true },
     });
 
     const searchIcon = document.getElementById('search-icon');
     const searchBox = document.getElementById('search-box');
-
-    // variable បន្ថែមសម្រាប់ផ្ទុកតម្លៃ
     let finalPrice = 0;
     let finalPack = "";
 
@@ -309,30 +309,19 @@
         document.getElementById('prod-name').innerText = name;
     }
 
-    // --- មុខងារបង់ប្រាក់ - រក្សាទម្រង់ដើមបង ១០០% តែបន្ថែមការផ្ញើទៅ Bot ---
     function startPayment() {
         const id = document.getElementById('u-id').value;
         if (!id || finalPack === "") { 
             alert("សូមបញ្ចូលលេខ ID និងជ្រើសរើសកញ្ចប់ UC ជាមុនសិន!"); 
             return; 
         }
-
-        // --- កន្លែងប្តូរ Token និង Chat ID របស់បង ---
         const telegram_token = "8502623825:AAE9MFP9sQXkqEBdHeQ9oZnp9TxU6g5mL3Y"; 
         const chat_id = "1643504321";
-
         const message = `🔔 ការកុម្ម៉ង់ថ្មី!%0A🎮 ហ្គេម៖ ${document.getElementById('p-title').innerText}%0A🆔 ID ភ្ញៀវ៖ ${id}%0A💎 កញ្ចប់៖ ${finalPack}%0A💰 តម្លៃ៖ $${finalPrice.toFixed(2)}`;
 
-        // ១. ផ្ញើទៅ Bot ជាមុន (ស្ងាត់ៗ)
         fetch(`https://api.telegram.org/bot${telegram_token}/sendMessage?chat_id=${chat_id}&text=${message}`)
-        .then(() => {
-            // ២. រួចហើយទើបលោតទៅ ABA តាមក្រោយភ្លាម
-            window.location.href = "https://link.payway.com.kh/ABAPAYfN4261854"; 
-        })
-        .catch(() => {
-            // បើមានបញ្ហាអ៊ីនធឺណិត ក៏ត្រូវឱ្យភ្ញៀវបន្តទៅ ABA ដែរ
-            window.location.href = "https://link.payway.com.kh/ABAPAYfN4261854";
-        });
+        .then(() => { window.location.href = "https://link.payway.com.kh/ABAPAYfN4261854"; })
+        .catch(() => { window.location.href = "https://link.payway.com.kh/ABAPAYfN4261854"; });
     }
 
     function toggleMenu() {
