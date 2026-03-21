@@ -183,7 +183,7 @@
         </div>
     </a>
 
-    <a href="https://www.facebook.com/share/18YyWd5iV3/?mibextid=wwXIfr" target="_blank" class="contact-btn">
+    <a href="https://www.facebook.com/share/17ChH1yfua/" target="_blank" class="contact-btn">
         <i class="fab fa-facebook" style="color:#1877F2; font-size:24px;"></i>
         <div>
             <div style="font-size:14px; font-weight:bold;">ហ្វេសប៊ុកផេក</div>
@@ -312,36 +312,36 @@
 
     const allData = {
         'pubg': [
-            { name: '60 UC', price: 0.99, img: 'Screenshot_20260321-005550_.jpg', link: 'https://link.payway.com.kh/ABAPAYQp426481x' },
-            { name: '325 UC', price: 4.99, img: 'Screenshot_20260321-005436_.jpg', link: 'https://link.payway.com.kh/ABAPAYVI426482l' },
-            { name: '660 UC', price: 9.99, img: 'Screenshot_20260321-005529_.jpg', link: 'https://link.payway.com.kh/ABAPAY64426484i' },
-            { name: '1800 UC', price: 24.99, img: 'Screenshot_20260321-005529_.jpg', link: 'https://link.payway.com.kh/ABAPAY1y426485p' },
-            { name: '3850 UC', price: 45.49, img: 'Screenshot_20260321-005504_.jpg', link: 'https://link.payway.com.kh/ABAPAYbt426486x' },
-            { name: '8100 UC', price: 90.49, img: 'Screenshot_20260321-005504_.jpg', link: 'https://link.payway.com.kh/ABAPAYhg426487m' },
-            { name: '16200 UC', price: 180.49, img: 'Screenshot_20260321-005504_.jpg', link: 'https://link.payway.com.kh/ABAPAY5W426488b' },
+            { name: '60 UC', price: 0.99, img: 'photo_6192972997363175343_m.jpg', link: 'https://link.payway.com.kh/ABAPAYQp426481x' },
+            { name: '325 UC', price: 4.99, img: 'photo_6192972997363175351_m.jpg', link: 'https://link.payway.com.kh/ABAPAYVI426482l' },
+            { name: '660 UC', price: 9.99, img: 'photo_6192972997363175349_m.jpg', link: 'https://link.payway.com.kh/ABAPAY64426484i' },
+            { name: '1800 UC', price: 24.99, img: 'photo_6192972997363175349_m.jpg', link: 'https://link.payway.com.kh/ABAPAY1y426485p' },
+            { name: '3850 UC', price: 45.49, img: 'photo_6192972997363175350_m.jpg', link: 'https://link.payway.com.kh/ABAPAYbt426486x' },
+            { name: '8100 UC', price: 90.49, img: 'photo_6192972997363175350_m.jpg', link: 'https://link.payway.com.kh/ABAPAYhg426487m' },
+            { name: '16200 UC', price: 180.49, img: 'photo_6192972997363175350_m.jpg', link: 'https://link.payway.com.kh/ABAPAY5W426488b' },
             { name: 'Weekly mythic pack', price: 3.10, img: 'images.jpeg', link: 'https://link.payway.com.kh/ABAPAY2O426489e' },
-            { name: 'Prime(1 Months)', price: 0.99, img: 'prime.png', link: 'https://link.payway.com.kh/ABAPAYQp426481x' },
-            { name: 'Prime(3 Months)', price: 2.99, img: 'prime.png', link: 'https://link.payway.com.kh/ABAPAYb5426490q' },
-            { name: 'Prime(6 Months)', price: 5.59, img: 'prime.png', link: 'https://link.payway.com.kh/ABAPAY0O4264915' },
-            { name: 'Prime(12 Months)', price: 11.20, img: 'prime.png', link: 'https://link.payway.com.kh/ABAPAYmk426492j' },
+            { name: 'Prime(1 Months)', price: 0.99, img: 'photo_6192972997363175354_m.jpg', link: 'https://link.payway.com.kh/ABAPAYQp426481x' },
+            { name: 'Prime(3 Months)', price: 2.99, img: 'photo_6192972997363175354_m.jpg', link: 'https://link.payway.com.kh/ABAPAYb5426490q' },
+            { name: 'Prime(6 Months)', price: 5.59, img: 'photo_6192972997363175354_m.jpg', link: 'https://link.payway.com.kh/ABAPAY0O4264915' },
+            { name: 'Prime(12 Months)', price: 11.20, img: 'photo_6192972997363175354_m.jpg', link: 'https://link.payway.com.kh/ABAPAYmk426492j' },
             { name: 'Prime Plus(1 Months)', price: 9.20, img: 'Prime plus.png', link: 'https://link.payway.com.kh/ABAPAYWc4264936' },
             { name: 'Prime Plus(3 Months)', price: 27.29, img: 'Prime plus.png', link: 'https://link.payway.com.kh/ABAPAYHz426494i' },
             { name: 'Prime Plus(6 Months)', price: 54.25, img: 'Prime plus.png', link: 'https://link.payway.com.kh/ABAPAYP74264957' },
             { name: 'Prime Plus(12 Months)', price: 108.20, img: 'Prime plus.png', link: 'https://link.payway.com.kh/ABAPAYym426496j' }
         ],
         'zepeto': [
-            { name: '14 Zems', price: 0.80, img: 'lg.png', link: 'https://link.payway.com.kh/ABAPAYEE426466W' },
-            { name: '28 Zems', price: 1.55, img: 'lg.png', link: 'https://link.payway.com.kh/ABAPAYpi4264675' },
-            { name: '58 Zems', price: 2.85, img: 'lg.png', link: 'https://link.payway.com.kh/ABAPAYvg4264680' },
-            { name: '128 Zems', price: 6.25, img: 'lg.png', link: 'https://link.payway.com.kh/ABAPAYft426469d' },
-            { name: '323 Zems', price: 15.25, img: 'lg.png', link: 'https://link.payway.com.kh/ABAPAYDA426470U' },
-            { name: '1000 Zems', price: 47.55, img: 'lg.png', link: 'https://link.payway.com.kh/ABAPAY3X426471S' },
-            { name: '4680 Coins', price: 0.99, img: 'cn.png', link: 'https://link.payway.com.kh/ABAPAYHx426472n' },
-            { name: '9700 Coins', price: 1.93, img: 'cn.png', link: 'https://link.payway.com.kh/ABAPAYg64264734' },
-            { name: '25200 Coins', price: 4.89, img: 'cn.png', link: 'https://link.payway.com.kh/ABAPAYv14264740' },
-            { name: '40700 Coins', price: 7.85, img: 'cn.png', link: 'https://link.payway.com.kh/ABAPAYEv426475D' },
-            { name: '110000 Coins', price: 20.45, img: 'cn.png', link: 'https://link.payway.com.kh/ABAPAYKK426476h' },
-            { name: '300000 Coins', price: 54.24, img: 'cn.png', link: 'https://link.payway.com.kh/ABAPAYGR426477C' }
+            { name: '14 Zems', price: 0.80, img: 'photo_6192972997363175348_m.jpg', link: 'https://link.payway.com.kh/ABAPAYEE426466W' },
+            { name: '28 Zems', price: 1.55, img: 'photo_6192972997363175348_m.jpg', link: 'https://link.payway.com.kh/ABAPAYpi4264675' },
+            { name: '58 Zems', price: 2.85, img: 'photo_6192972997363175348_m.jpg', link: 'https://link.payway.com.kh/ABAPAYvg4264680' },
+            { name: '128 Zems', price: 6.25, img: 'photo_6192972997363175348_m.jpg', link: 'https://link.payway.com.kh/ABAPAYft426469d' },
+            { name: '323 Zems', price: 15.25, img: 'photo_6192972997363175348_m.jpg', link: 'https://link.payway.com.kh/ABAPAYDA426470U' },
+            { name: '1000 Zems', price: 47.55, img: 'photo_6192972997363175348_m.jpg', link: 'https://link.payway.com.kh/ABAPAY3X426471S' },
+            { name: '4680 Coins', price: 0.99, img: 'photo_6192972997363175347_m.jpg', link: 'https://link.payway.com.kh/ABAPAYHx426472n' },
+            { name: '9700 Coins', price: 1.93, img: 'photo_6192972997363175347_m.jpg', link: 'https://link.payway.com.kh/ABAPAYg64264734' },
+            { name: '25200 Coins', price: 4.89, img: 'photo_6192972997363175347_m.jpg', link: 'https://link.payway.com.kh/ABAPAYv14264740' },
+            { name: '40700 Coins', price: 7.85, img: 'photo_6192972997363175347_m.jpg', link: 'https://link.payway.com.kh/ABAPAYEv426475D' },
+            { name: '110000 Coins', price: 20.45, img: 'photo_6192972997363175347_m.jpg', link: 'https://link.payway.com.kh/ABAPAYKK426476h' },
+            { name: '300000 Coins', price: 54.24, img: 'photo_6192972997363175347_m.jpg', link: 'https://link.payway.com.kh/ABAPAYGR426477C' }
         ]
     };
 
