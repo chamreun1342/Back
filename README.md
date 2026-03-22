@@ -236,17 +236,17 @@
         <div class="game-grid">
             <div class="game-item" onclick="openTopup('PUBG MOBILE', 'PUBG.jpg', 'pubg')">
                 <img src="PUBG.jpg">
-                <div style="font-size:12px; padding:8px 5px 0 5px; font-weight:bold;">PUBG   MOBILE</div>
+                <div style="font-size:12px; padding:8px 5px 0 5px; font-weight:bold;">PUBG MOBILE</div>
                 <button class="btn-topup-sm">TOP UP</button>
             </div>
             <div class="game-item" onclick="openTopup('ZEPETO', 'zepeto-icon.jpg', 'zepeto')">
                 <img src="zepeto-icon.jpg">
-                <div style="font-size:12px; padding:8px 5px 0 5px; font-weight:bold;">        ZEPETO</div>
+                <div style="font-size:12px; padding:8px 5px 0 5px; font-weight:bold;">ZEPETO</div>
                 <button class="btn-topup-sm">TOP UP</button>
             </div>
             <div class="game-item" onclick="openTopup('Mobile legends', 'mlbb.png', 'mlbb')">
                 <img src="mlbb.png">
-                <div style="font-size:12px; padding:8px 5px 0 5px; font-weight:bold;">Mobile legends</div>
+                <div style="font-size:12px; padding:8px 5px 0 5px; font-weight:bold;">MOBILE KH</div>
                 <button class="btn-topup-sm">TOP UP</button>
             </div>
         </div>
