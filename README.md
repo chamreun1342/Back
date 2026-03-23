@@ -256,7 +256,7 @@
             </div>
             <div class="game-item" onclick="openTopup('Honor of Kings', 'fgh.png', 'honor of Kings')">
                 <img src="fgh.png">
-                <div style="font-size:12px; padding:8px 5px 0 5px; font-weight:bold;">Honor of Kings</div>
+                <div style="font-size:12px; padding:8px 5px 0 5px; font-weight:bold;">Honor</div>
                 <button class="btn-topup-sm">TOP UP</button>
             </div>
             <div class="game-item" onclick="openTopup('DELTA FORCE', 'rty.png', 'DELTA FORCE')">
