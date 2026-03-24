@@ -388,7 +388,7 @@
     const allData = {
         'pubg': [
             { name: '60 UC', price: 0.99, img: 'photo_6192972997363175343_m.jpg', link: 'https://link.payway.com.kh/ABAPAYQp426481x' },
-            { name: '325 UC', price: 4.99, img: 'photo_6192972997363175351_m.jpg', link: 'https://link.payway.com.kh/ABAPAYVI426482l' },
+            { name: '325 UC', price: 4.70, img: 'photo_6192972997363175351_m.jpg', link: 'https://link.payway.com.kh/ABAPAYnP427290o' },
             { name: '660 UC', price: 9.99, img: 'photo_6192972997363175349_m.jpg', link: 'https://link.payway.com.kh/ABAPAY64426484i' },
             { name: '1800 UC', price: 24.99, img: 'photo_6192972997363175349_m.jpg', link: 'https://link.payway.com.kh/ABAPAY1y426485p' },
             { name: '3850 UC', price: 45.49, img: 'photo_6192972997363175350_m.jpg', link: 'https://link.payway.com.kh/ABAPAYbt426486x' },
