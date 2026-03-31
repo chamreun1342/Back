@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>imsela Center - Ultimate Stay</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-body: #ffe4e1;
+            --bg-card: #ffffff;
+            --txt-main: #000000;
+            --pink-dark: #ff1493;
+        }
+
+        body.dark-mode {
+            --bg-body: #1a1a1a;
+            --bg-card: #2d2d2d;
+            --txt-main: #ffffff;
+            --pink-dark: #ff69b4;
+        }
+
+        * { box-sizing: border-box; transition: 0.3s; }
+        body { font-family: 'Khmer OS Battambang', sans-serif; background: var(--bg-body); margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; color: var(--txt-main); }
+        
+        .site-header { position: fixed; top: 0; width: 100%; max-width: 500px; height: 70px; background: var(--bg-card); display: flex; align-items: center; justify-content: space-between; z-index: 1100; padding: 0 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .site-name { font-size: 28px; font-weight: 900; color: #fff; text-shadow: 0 0 8px #ff4500, 0 0 20px #ff0000; animation: fire-burn 0.5s infinite alternate; }
+        @keyframes fire-burn { from { transform: scale(1); } to { transform: scale(1.05); } }
+        
+        .marquee-sticky { position: fixed; top: 70px; width: 100%; max-width: 500px; background: #ff0000; color: white; padding: 8px 0; font-size: 14px; font-weight: bold; z-index: 1050; overflow: hidden; white-space: nowrap; }
+        .marquee-text { display: inline-block; padding-left: 100%; animation: marquee-play 15s linear infinite; }
+        @keyframes marquee-play { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+        .app-container { width: 100%; max-width: 500px; padding-top: 120px; flex: 1; padding-bottom: 30px; }
+        .h-btn { padding: 6px 12px; background: rgba(255,20,147,0.2); border-radius: 8px; border: none; cursor: pointer; color: var(--pink-dark); font-weight: bold; display: flex; align-items: center; gap: 5px; }
+
+        .section-divider { padding: 20px 20px 10px; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: bold; }
+        .section-divider::before { content: ""; width: 18px; height: 3px; background: var(--pink-dark); border-radius: 10px; }
+
+        .grid-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 0 15px 15px; }
+        
+        .menu-card { 
+            background: var(--bg-card); 
+            padding: 15px 5px; 
+            border-radius: 20px; 
+            text-align: center; 
+            cursor: pointer; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+            color: var(--txt-main); 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+        }
+        
+        .menu-card img { width: 42px; height: 42px; margin-bottom: 8px; background: transparent !important; object-fit: contain; }
+        .game-card img { width: 55px !important; height: 55px !important; }
+        .menu-card span { font-weight: bold; font-size: 11px; }
+
+        .fn-area { 
+            grid-column: span 3; 
+            background: var(--bg-card); 
+            padding: 15px; 
+            border-radius: 20px; 
+            margin-top: -5px; 
+            display: none; 
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,20,147,0.1);
+        }
+
+        .footer-sticky { width: 100%; max-width: 500px; background: var(--bg-card); padding: 20px; text-align: center; border-top: 1px solid rgba(0,0,0,0.1); }
+        .footer-text { font-size: 13px; color: var(--txt-main); margin-top: 10px; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div style="display:flex; align-items:center; gap:8px;">
+        <img src="matin.png" style="width:45px; height:45px; border-radius:12px; background: transparent !important;">
+        <span class="site-name">imsela</span>
+    </div>
+    <div style="display: flex; gap: 8px;">
+        <button class="h-btn" onclick="toggleLang()" id="langBtn"><span>🇰🇭 KH</span></button>
+        <button class="h-btn" onclick="toggleTheme()"><i id="themeIcon" class="fas fa-moon"></i></button>
+    </div>
+</header>
+
+<div class="marquee-sticky">
+    <div class="marquee-text" id="marqueeTxt">សូមស្វាគមន៍មកកាន់ imsela Center! សេវាកម្មរហ័សទាន់ចិត្ត និងទំនុកចិត្តខ្ពស់បំផុត។</div>
+</div>
+
+<div class="app-container">
+    <div class="section-divider" id="secPopular">សេវាកម្មពេញនិយម</div>
+    <div class="grid-container">
+        <div class="menu-card" onclick="openContentInNewTab('box1')">
+            <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png">
+            <span class="label" data-kh="ចិនរ៉េតសំឡេង" data-en="Voice AI">ចិនរ៉េតសំឡេង</span>
+        </div>
+        <div class="menu-card" onclick="openContentInNewTab('box2')">
+            <img src="https://cdn-icons-png.flaticon.com/512/2904/2904973.png">
+            <span class="label" data-kh="សារភាពស្នេហ៍" data-en="Love Message">សារភាពស្នេហ៍</span>
+        </div>
+        <div class="menu-card" onclick="openContentInNewTab('box3')">
+            <img src="https://cdn-icons-png.flaticon.com/512/2541/2541991.png">
+            <span class="label" data-kh="ផ្លូនអក្សរ" data-en="Text Clone">ផ្លូនអក្សរ</span>
+        </div>
+
+        <div id="box1" class="fn-area"><h3>ចិនរ៉េតសំឡេង</h3><p>[ កូដរបស់ពូនៅទីនេះ ]</p></div>
+        <div id="box2" class="fn-area"><h3>សារភាពស្នេហ៍</h3><p>[ កូដរបស់ពូនៅទីនេះ ]</p></div>
+        <div id="box3" class="fn-area"><h3>ផ្លូនអក្សរ</h3><p>[ កូដរបស់ពូនៅទីនេះ ]</p></div>
+    </div>
+
+    <div class="section-divider" id="secTopup">បុកលុយហ្គេម</div>
+    <div class="grid-container">
+        <div class="menu-card game-card" onclick="openContentInNewTab('boxGame')">
+            <img src="matin.png">
+            <span class="label" data-kh="បុក UC ហ្គេម" data-en="Game TopUp">បុក UC ហ្គេម</span>
+        </div>
+        <div id="boxGame" class="fn-area"><h3>បុក UC ហ្គេម</h3><p>[ កូដរបស់ពូនៅទីនេះ ]</p></div>
+    </div>
+
+    <div class="section-divider" id="secAdmin">Admin / ទំនាក់ទំនង</div>
+    <div class="grid-container">
+        <a href="https://facebook.com" target="_blank" class="menu-card" style="text-decoration:none;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png">
+            <span>Facebook</span>
+        </a>
+        <a href="https://t.me" target="_blank" class="menu-card" style="text-decoration:none;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/2048px-Telegram_logo.svg.png">
+            <span>Telegram</span>
+        </a>
+    </div>
+</div>
+
+<footer class="footer-sticky">
+    <b id="footerAbout">អំពី imsela</b>
+    <p class="footer-text" id="footerDesc">វេទិកាដែលអ្នកទុកចិត្តសម្រាប់សេវាកម្មនិងឧបករណ៍ឌីជីថល។ យើងផ្តល់នូវដំណោះស្រាយរហ័ស ទុកចិត្តបាន និងមានតម្លៃសមរម្យសម្រាប់អ្នកលេងហ្គេម អ្នកបង្កើតខ្លឹមសារ និងអាជីវកម្ម។</p>
+</footer>
+
+<script>
+    // 💡 មុខងារពិសេស៖ ការពារមិនឱ្យចាកចេញពីវេបសាយទោះនៅក្នង Telegram ឬ Chat
+    function preventExit() {
+        history.pushState(null, null, location.href);
+        window.onpopstate = function() {
+            history.go(1);
+        };
+    }
+    // ហៅមុខងារនេះភ្លាមៗពេល Web ដំណើរការ
+    preventExit();
+
+    function openContentInNewTab(id) {
+        const content = document.getElementById(id).innerHTML;
+        const newWindow = window.open('', '_blank');
+        if (newWindow) {
+            newWindow.document.write(`
+                <html>
+                <head>
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>imsela - Service</title>
+                    <style>
+                        body { font-family: 'Khmer OS Battambang', sans-serif; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #ffe4e1; }
+                        .content-box { background: white; padding: 25px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
+                        h3 { color: #ff1493; margin-top: 0; }
+                    </style>
+                </head>
+                <body>
+                    <div class="content-box">${content}</div>
+                </body>
+                </html>
+            `);
+            newWindow.document.close();
+        } else {
+            // បើ Browser បិទមិនឱ្យបើក Tab ថ្មី គឺបង្ហាញក្នុងទំព័រហ្នឹងតែម្តង (Fallback)
+            document.querySelectorAll('.fn-area').forEach(el => el.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+        }
+    }
+
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        document.getElementById('themeIcon').className = isDark ? "fas fa-sun" : "fas fa-moon";
+    }
+
+    function toggleLang() {
+        const btn = document.getElementById('langBtn');
+        const isKhmer = btn.innerText.includes('KH');
+        btn.innerHTML = isKhmer ? '<span>🇺🇲 EN</span>' : '<span>🇰🇭 KH</span>';
+        
+        document.getElementById('secTopup').innerText = isKhmer ? "Game TopUp" : "បុកលុយហ្គេម";
+        document.getElementById('secPopular').innerText = isKhmer ? "Popular Services" : "សេវាកម្មពេញនិយម";
+        document.getElementById('secAdmin').innerText = isKhmer ? "Admin / Contact" : "Admin / ទំនាក់ទំនង";
+        document.getElementById('footerAbout').innerText = isKhmer ? "About imsela" : "អំពី imsela";
+        
+        const desc = document.getElementById('footerDesc');
+        desc.innerText = isKhmer ? "A trusted platform for digital services and tools. We provide fast, reliable, and affordable solutions for gamers, content creators, and businesses." : "វេទិកាដែលអ្នកទុកចិត្តសម្រាប់សេវាកម្មនិងឧបករណ៍ឌីជីថល។ យើងផ្តល់នូវដំណោះស្រាយរហ័ស ទុកចិត្តបាន និងមានតម្លៃសមរម្យសម្រាប់អ្នកលេងហ្គេម អ្នកបង្កើតខ្លឹមសារ និងអាជីវកម្ម។";
+
+        document.querySelectorAll('.label').forEach(el => {
+            el.innerText = isKhmer ? el.getAttribute('data-en') : el.getAttribute('data-kh');
+        });
+    }
+</script>
+</body>
+</html>
