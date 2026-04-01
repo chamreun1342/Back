@@ -1,0 +1,23 @@
+{
+  "name": "MATIN",
+  "short_name": "MATIN",
+  "description": "វេទិកាបុកលុយហ្គេម និងសេវាកម្មឌីជីថល",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ff1493",
+  "theme_color": "#ff1493",
+  "icons": [
+    {
+      "src": "matin.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "matin.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
